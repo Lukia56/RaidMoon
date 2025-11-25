@@ -44,6 +44,10 @@ public class EnemyMeleeDead : EnemyMeleeProcess
         if (_destroyCounter < 0)
         {
             _enemy.Release();
+
+            GameObject arrow = Instantiate(_enemy.Arrow, _enemy.transform.position, Quaternion.identity);
+            arrow.GetComponent<DroppedArrow>().PlayerTransform = _enemy.PlayerTransform; 
+            arrow.GetComponent<DroppedArrow>().PlayerComponent = _enemy.PlayerComponent; 
         }
     }
 }

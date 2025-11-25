@@ -230,4 +230,10 @@ public class Player : MonoBehaviour
         Debug.Log("€–S‚µ‚Ü‚µ‚½");
         _isDead = true;
     }
+
+    // –î‚Ì•â[
+    public void AddArrow(int add)
+    {
+        _numArrows += add;
+    }
 }

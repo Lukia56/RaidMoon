@@ -22,6 +22,8 @@ public class EnemyMelee : Enemy
     public Player PlayerComponent { get => _playerComponent; set => _playerComponent = value; }
     [SerializeField] private bool _isInvincible;             // –³“G‚©‚Ç‚¤‚©
     public bool IsInvincible { get => _isInvincible; set => _isInvincible = value; }
+    [SerializeField] GameObject _arrow;
+    public GameObject Arrow { get => _arrow; }
 
     public EState State
     {
