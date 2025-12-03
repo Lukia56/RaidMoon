@@ -75,7 +75,7 @@ public class EnemyGenerator : MonoBehaviour
 
         // •Ï”‚ğİ’è
         enemy.transform.position = Vector3.Scale(_generatePosition, new Vector3(direction, 1, 1));
-        EnemyMelee enemyComponent = enemy.GetComponent<EnemyMelee>();
+        Enemy enemyComponent = enemy.GetComponent<Enemy>();
         enemyComponent.Direction = -direction;
         enemyComponent.PlayerTransform = _playerTransform;
         enemyComponent.PlayerComponent = _playerComponent;

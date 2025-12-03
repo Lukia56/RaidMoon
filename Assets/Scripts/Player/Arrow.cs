@@ -26,6 +26,7 @@ public class Arrow : PooledObject
 
     public override void Init()
     {
+        _speed = Vector3.zero;
     }
 
     public void PostInit()

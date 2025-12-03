@@ -398,7 +398,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.02950339, g: 0.046198443, b: 0.16037738, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -515,7 +515,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.1981132, g: 0.07281757, b: 0.042052336, a: 1}
+  m_Color: {r: 0.11320752, g: 0.052865773, b: 0.075008176, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1103,9 +1103,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cooldownCounter: 0
-  _objectsPool: []
+  _objectsPool:
+  - {fileID: 553160143051903874, guid: 97c31519bbc028a44b75424726601811, type: 3}
   _statsList:
-  - prefab: {fileID: 6773272036671892667, guid: f070f9165a7f4f745b4875c854f738bf, type: 3}
+  - prefab: {fileID: 6773272036671892667, guid: 97c31519bbc028a44b75424726601811, type: 3}
     weight: 50
     cooldown: 3
   _generatePosition: {x: 10, y: -2, z: 0}
@@ -1215,7 +1216,7 @@ MonoBehaviour:
   _isDead: 0
   _isInvincible: 0
   _actionCooldownCounter: 0
-  _numArrows: 0
+  _numArrows: 25
   _bowChargeCounter: 0
   _isBowStartCharging: 0
   _isBowCharged: 0
@@ -1310,6 +1311,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pool: {fileID: 0}
+  _direction: 0
+  _playerTransform: {fileID: 0}
+  _playerComponent: {fileID: 0}
   _prefabAttackCollider: {fileID: 2469563708137850880, guid: 1d55fa3633486864ba85a45a6dbfbead, type: 3}
   _velocity: {x: 0, y: 0, z: 0}
   _gravity: 0
@@ -1380,7 +1384,7 @@ Transform:
   m_GameObject: {fileID: 1649719853}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.54, y: -2.04, z: 0}
+  m_LocalPosition: {x: -9.44, y: 8.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

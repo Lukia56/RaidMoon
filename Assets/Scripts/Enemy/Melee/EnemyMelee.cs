@@ -14,12 +14,6 @@ public class EnemyMelee : Enemy
     [SerializeReference]
     private List<EnemyMeleeProcess> _processList;
 
-    [SerializeField] private int _direction;            // 敵が向いている方向
-    public int Direction { get => _direction; set => _direction = value; }
-    [SerializeField] private Transform _playerTransform;    // プレイヤーのトランスフォーム
-    public Transform PlayerTransform { get => _playerTransform; set => _playerTransform = value; }
-    [SerializeField] private Player _playerComponent;       // プレイヤーのトランスフォーム
-    public Player PlayerComponent { get => _playerComponent; set => _playerComponent = value; }
     [SerializeField] private bool _isInvincible;             // 無敵かどうか
     public bool IsInvincible { get => _isInvincible; set => _isInvincible = value; }
     [SerializeField] GameObject _arrow;
@@ -109,7 +103,7 @@ public class EnemyMelee : Enemy
     }
 
     // 死亡処理
-    public bool Dead()
+    public override bool Dead()
     {
         return ((EnemyMeleeDead)_processList[(int)EState.Dead]).Dead();
     }

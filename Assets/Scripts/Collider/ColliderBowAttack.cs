@@ -61,7 +61,7 @@ public class ColliderBowAttack : MonoBehaviour
         if (!_isCharged) return;
 
         // “G‚ª€–S‚µ‚½‚ç©g‚ğíœ
-        if (hitObject.GetComponent<EnemyMelee>().Dead())
+        if (hitObject.GetComponent<Enemy>().Dead())
         {
             _isDead = true;
         }

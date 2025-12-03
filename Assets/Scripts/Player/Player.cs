@@ -131,7 +131,7 @@ public class Player : MonoBehaviour
         //Arrow arrowComp = arrow.GetComponent<Arrow>();
         //arrowComp.Direction = m_Direction;
         //arrowComp.ChargeRate = _bowChargeCounter / _bowChargeTime;
-
+        _arrowObjectPool.GetInstance();
         GameObject arrow = _arrowObjectPool.GetInstance().gameObject;
         arrow.transform.position = transform.position;
         Arrow arrowComp = arrow.GetComponent<Arrow>();
