@@ -52,7 +52,12 @@ MonoBehaviour:
   m_TargetTagName: Enemy
   m_BoxCollider: {fileID: 3520687036518957398}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_HitStop: {fileID: 0}
+=======
+  cameraController: {fileID: 0}
+  shakeAmount: {x: 0, y: 0, z: 0}
+>>>>>>> Stashed changes
 =======
   cameraController: {fileID: 0}
   shakeAmount: {x: 0, y: 0, z: 0}

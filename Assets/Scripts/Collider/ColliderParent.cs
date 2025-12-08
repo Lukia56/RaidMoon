@@ -11,12 +11,15 @@ public class ColliderParent : MonoBehaviour
     [SerializeField] private BoxCollider2D m_BoxCollider;   // 自身のコライダー
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     [SerializeField] private HitStop m_HitStop;
 
     private void Start()
     {
         m_HitStop = GameObject.FindWithTag("HitStop").GetComponent<HitStop>();
 =======
+=======
+>>>>>>> Stashed changes
     [SerializeField]
     private CameraController cameraController;
 
@@ -26,6 +29,9 @@ public class ColliderParent : MonoBehaviour
     private void Start()
     {
         cameraController = GameObject.FindWithTag("MainCamera").GetComponent<CameraController>();
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     }
 

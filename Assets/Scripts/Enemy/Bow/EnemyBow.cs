@@ -68,8 +68,11 @@ public class EnemyBow : Enemy
     {
         _isDead = true;
         _destroyCounter = deadAnimationTime;
+<<<<<<< Updated upstream
 
         KillNumbers.AddNumber();
+=======
+>>>>>>> Stashed changes
 
         return true;
     }
