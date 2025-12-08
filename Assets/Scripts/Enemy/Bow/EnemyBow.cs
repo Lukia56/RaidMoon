@@ -58,6 +58,8 @@ public class EnemyBow : Enemy
     {
         _isDead = true;
 
+        KillNumbers.AddNumber();
+
         return true;
     }
 

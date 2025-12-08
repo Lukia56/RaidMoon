@@ -10,6 +10,8 @@ public class PooledObject : MonoBehaviour
 
     public virtual void Init() { }
 
+    public virtual void PostInit() { }
+
     public void Release()
     {
         _pool.ReturnToPool(this);

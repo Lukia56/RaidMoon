@@ -32,6 +32,8 @@ public class EnemyMeleeDead : EnemyMeleeProcess
         _enemy.State = EnemyMelee.EState.Dead;
         _destroyCounter = _deadAnimationTime;
 
+        _enemy.KillNumbers.AddNumber();
+
         return true;
     }
 

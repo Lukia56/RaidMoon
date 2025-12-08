@@ -16,7 +16,15 @@ public class Bomb : Enemy
     [SerializeField] private float _parryForceY;        // はじかれたときの速度
     [SerializeField] private float _parryExplosionTime; // はじかれてから爆発するまでの時間
 
-    private void Start()
+    public override void Init()
+    {
+        _velocity = Vector3.zero;
+        _gravity = 0;
+        _parryExplosionCounter = 0;
+        _isParried = false;
+    }
+
+    public override void PostInit()
     {
         // _moveTimeの時間をかけて移動するようにする
         _velocity.x = (0 - transform.position.x) / _moveTime;
@@ -35,7 +43,7 @@ public class Bomb : Enemy
         transform.position += _velocity * Time.deltaTime;
 
         // 画面外に出たら削除
-        if (IsOffscreen()) Destroy(gameObject);
+        if (IsOffscreen()) Release();
     }
 
     private bool IsOffscreen() { return transform.position.y < -7; }
@@ -64,7 +72,7 @@ public class Bomb : Enemy
         if (_parryExplosionCounter >= 0) return;
         
         Explosion();
-        Destroy(gameObject);
+        Release();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -75,7 +83,7 @@ public class Bomb : Enemy
             Explosion();
 
             // 自身を削除
-            Destroy(gameObject);
+            Release();
         }
     }
 }

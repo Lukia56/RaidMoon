@@ -13,6 +13,7 @@ public class EnemyGenerator : MonoBehaviour
     [SerializeField] private Transform _playerTransform;    // プレイヤーのゲームオブジェクト
     [SerializeField] private Player _playerComponent;       // プレイヤーのコンポーネント
     [SerializeField] private RemainTime _remainTime;        // 残り時間を計算するコンポーネント
+    [SerializeField] private KillNumber _killNumber;
 
     // 敵の統計
     [System.Serializable]
@@ -79,6 +80,8 @@ public class EnemyGenerator : MonoBehaviour
         enemyComponent.Direction = -direction;
         enemyComponent.PlayerTransform = _playerTransform;
         enemyComponent.PlayerComponent = _playerComponent;
+        enemyComponent.KillNumbers = _killNumber;
+        enemyComponent.PostInit();
 
         // クールダウンを設定
         _cooldownCounter = stats.cooldown;

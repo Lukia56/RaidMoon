@@ -5,10 +5,17 @@ using UnityEngine;
 public class ColliderParent : MonoBehaviour
 {
     [SerializeField] private float m_LifeCounter;           // 破壊されるまでのカウンタ
-
+    [SerializeField] private float m_HitStopTime;           // 停止する時間
     [SerializeField] private string m_TargetTagName;        // 対象のタグ名
 
     [SerializeField] private BoxCollider2D m_BoxCollider;   // 自身のコライダー
+
+    [SerializeField] private HitStop m_HitStop;
+
+    private void Start()
+    {
+        m_HitStop = GameObject.FindWithTag("HitStop").GetComponent<HitStop>();
+    }
 
     private void Update()
     {
@@ -43,6 +50,8 @@ public class ColliderParent : MonoBehaviour
         // 対象に衝突していたら
         if (collision.gameObject.tag == m_TargetTagName)
         {
+            m_HitStop.StopCounter = m_HitStopTime;
+
             // ヒット処理
             HitToTarget(collision.gameObject);
         }
