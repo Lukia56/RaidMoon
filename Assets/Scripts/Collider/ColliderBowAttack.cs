@@ -5,6 +5,7 @@ using UnityEngine;
 public class ColliderBowAttack : MonoBehaviour
 {
     [SerializeField] private float m_LifeCounter;           // 破壊されるまでのカウンタ
+    public float LifeCounter { set =>  m_LifeCounter = value; }
     [SerializeField] private string m_TargetTagName;        // 対象のタグ名
     // チャージ済みかどうか
     [SerializeField] bool _isCharged;

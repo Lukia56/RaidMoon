@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4500259764644902555}
   m_Layer: 0
   m_Name: EnemyArrow
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,11 +98,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63a88796c2205d5448b51c1ac4c54b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pool: {fileID: 0}
+  _direction: 0
+  _playerTransform: {fileID: 0}
+  _playerComponent: {fileID: 0}
   _velocity: {x: 0, y: 0, z: 0}
   _gravity: 0
+  _isStartRotate: 0
   _collider: {fileID: 0}
   moveTime: 2
   initForceY: 10
+  rotate: 1
   prefabColliderAttack: {fileID: 2469563708137850880, guid: f576122eb15a21448aa857e40cc77f75, type: 3}
 --- !u!61 &4500259764644902555
 BoxCollider2D:

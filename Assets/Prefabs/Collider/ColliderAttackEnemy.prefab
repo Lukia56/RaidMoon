@@ -50,7 +50,8 @@ MonoBehaviour:
   m_LifeCounter: 1
   m_TargetTagName: Player
   m_BoxCollider: {fileID: 2353549968878109264}
-  m_Player: {fileID: 0}
+  cameraController: {fileID: 0}
+  shakeAmount: {x: 1, y: 1, z: 0}
 --- !u!61 &2353549968878109264
 BoxCollider2D:
   m_ObjectHideFlags: 0

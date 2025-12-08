@@ -103,9 +103,13 @@ MonoBehaviour:
   _playerTransform: {fileID: 0}
   _playerComponent: {fileID: 0}
   _cooldownAttackCounter: 0
+  _isDead: 0
+  _destroyCounter: 0
   _destPosition: {x: 8, y: 0, z: 0}
   cooldownAttack: 3
   moveSpeed: 0.01
+  deadAnimationTime: 1
+  spriteRenderer: {fileID: 2957545710964717161}
   prefabArrow: {fileID: 2377180300066008099, guid: 66ea4f0ef0953d040b882873c8fd91d4, type: 3}
 --- !u!61 &5491485918550979016
 BoxCollider2D:

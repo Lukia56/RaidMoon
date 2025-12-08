@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Timeline;
 
-public class EnemyArrow : MonoBehaviour
+public class EnemyArrow : Enemy
 {
     [SerializeField]
     private Vector3 _velocity = Vector3.zero;
     [SerializeField]
     private float _gravity;
+    [SerializeField]
+    private bool _isStartRotate;
     [SerializeField]
     private GameObject _collider;
 
@@ -16,6 +19,8 @@ public class EnemyArrow : MonoBehaviour
     private float moveTime;
     [SerializeField]
     private float initForceY;
+    [SerializeField]
+    private float rotate;
     [SerializeField]
     private GameObject prefabColliderAttack;
 
@@ -38,6 +43,11 @@ public class EnemyArrow : MonoBehaviour
         // à⁄ìÆ
         transform.position += _velocity * Time.deltaTime;
 
+        if (_isStartRotate)
+        {
+            transform.localEulerAngles -= Vector3.forward * rotate * Mathf.Sign(_velocity.x);
+        }
+
         // âÊñ äOÇ…èoÇΩÇÁçÌèú
         if (IsOffscreen())
         {
@@ -52,6 +62,14 @@ public class EnemyArrow : MonoBehaviour
     }
 
     private bool IsOffscreen() { return transform.position.y < -7; }
+
+    public override void Parried()
+    {
+        _velocity.x *= -1;
+        _velocity.y = initForceY / 2;
+
+        _isStartRotate = true;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

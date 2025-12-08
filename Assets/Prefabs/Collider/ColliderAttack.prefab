@@ -50,6 +50,8 @@ MonoBehaviour:
   m_LifeCounter: 1
   m_TargetTagName: Enemy
   m_BoxCollider: {fileID: 3520687036518957398}
+  cameraController: {fileID: 0}
+  shakeAmount: {x: 1, y: 1, z: 0}
 --- !u!61 &3520687036518957398
 BoxCollider2D:
   m_ObjectHideFlags: 0

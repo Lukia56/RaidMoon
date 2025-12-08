@@ -37,6 +37,7 @@ public class Arrow : PooledObject
         // UŒ‚”»’è‚Ì‰Šú‰»
         _collider.GetComponent<ColliderBowAttack>().IsCharged = (_chargeRate >= 1.0f);  // ƒ`ƒƒ[ƒWÏ‚İ‚ª‚Ç‚¤‚©‚ğUŒ‚”»’è‚É“n‚·
         _collider.GetComponent<ColliderBowAttack>().IsDead = false;
+        _collider.GetComponent<ColliderBowAttack>().LifeCounter = 1;
     }
 
     private void Awake()
