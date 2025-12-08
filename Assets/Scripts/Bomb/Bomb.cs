@@ -16,6 +16,7 @@ public class Bomb : Enemy
     [SerializeField] private float _parryForceY;        // ‚Í‚¶‚©‚ê‚½‚Æ‚«‚Ì‘¬“x
     [SerializeField] private float _parryExplosionTime; // ‚Í‚¶‚©‚ê‚Ä‚©‚ç”š”­‚·‚é‚Ü‚Å‚ÌŠÔ
 
+<<<<<<< Updated upstream
     public override void Init()
     {
         _velocity = Vector3.zero;
@@ -25,7 +26,15 @@ public class Bomb : Enemy
     }
 
     public override void PostInit()
+=======
+    [SerializeField]
+    private CameraController cameraController;
+
+    private void Start()
+>>>>>>> Stashed changes
     {
+        cameraController = GameObject.FindWithTag("MainCamera").GetComponent<CameraController>();
+
         // _moveTime‚ÌŠÔ‚ğ‚©‚¯‚ÄˆÚ“®‚·‚é‚æ‚¤‚É‚·‚é
         _velocity.x = (0 - transform.position.x) / _moveTime;
 
@@ -54,6 +63,8 @@ public class Bomb : Enemy
         //Debug.Log("”š”­ˆ—‚ªŒÄ‚Î‚ê‚Ü‚µ‚½");
 
         GameObject obj = Instantiate(_prefabAttackCollider, transform.position, Quaternion.identity);
+
+        cameraController.Shake(Vector3.one);
     }
 
     public override void Parried()
