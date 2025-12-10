@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _actionCooldownCounter = 0;      // 行動クールダウンのカウンタ
 
     [SerializeField] private int _numArrows;                        // 矢の数
+    public int NumArrows { get { return _numArrows; }}
     [SerializeField] private float _bowChargeCounter = 0;           // 弓のチャージカウンタ
     [SerializeField] private bool _isBowStartCharging = false;      // 弓がチャージ中かどうか
     [SerializeField] private bool _isBowCharged = false;            // 弓がチャージできたか

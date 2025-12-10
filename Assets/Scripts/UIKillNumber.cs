@@ -12,6 +12,6 @@ public class UIKillNumber : MonoBehaviour
 
     private void Update()
     {
-        textMeshPro.text = "KILL: " + killNumber.KillNumbers.ToString();
+        textMeshPro.text = killNumber.KillNumbers.ToString();
     }
 }

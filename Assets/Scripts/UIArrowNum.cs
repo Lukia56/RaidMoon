@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class UIRemainTime : MonoBehaviour
+public class UIArrowNum : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI m_TextMeshProUGUI;
-    [SerializeField] private RemainTime m_RemainTime;
+    [SerializeField] private Player m_Player;
 
     private void Update()
     {
-        m_TextMeshProUGUI.text = m_RemainTime.GetRemainTime().ToString("F0");
+        m_TextMeshProUGUI.text = m_Player.NumArrows.ToString();
     }
 }
