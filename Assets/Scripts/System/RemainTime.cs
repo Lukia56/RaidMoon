@@ -4,20 +4,29 @@ using UnityEngine;
 
 public class RemainTime : MonoBehaviour
 {
-    [SerializeField] private float m_LimitTime;
-    [SerializeField] private float m_TimeCounter = 0;
+    static public float s_surviveTime;
 
-    [SerializeField] private Player m_Player;
+    [Header("メンバ変数")]
+
+    [SerializeField] private float m_TimeCounter;
+
+    [Header("パラメータ")]
+
+    [SerializeField] private float limitTime;
+
+    [SerializeField] private Player player;
 
     private void Start()
     {
-        m_TimeCounter = m_LimitTime;
+        m_TimeCounter = limitTime;
     }
 
     private void Update()
     {
+        s_surviveTime = (int)limitTime - m_TimeCounter;
+
         // プレイヤーが死亡していないなら
-        if (m_Player.IsDead) return;
+        if (player.IsDead) return;
 
         if (m_TimeCounter < 0) return;
 

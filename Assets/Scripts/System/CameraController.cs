@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    [Header("メンバ変数")]
+
     [SerializeField]
     private Vector3 m_position;
     [SerializeField]
@@ -11,6 +13,8 @@ public class CameraController : MonoBehaviour
 
     [SerializeField]
     private Vector3 m_shake;
+
+    [Header("パラメータ")]
 
     [SerializeField]
     private float shakeDecreaseSpeed;

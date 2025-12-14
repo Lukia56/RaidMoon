@@ -9,6 +9,8 @@ public class EnemyBow : Enemy
     [SerializeField]
     private bool _isDead;
     [SerializeField]
+    private bool _isMoved;
+    [SerializeField]
     private float _destroyCounter;          // 死亡後削除するまでのカウンタ
 
     // パラメータ
@@ -41,7 +43,12 @@ public class EnemyBow : Enemy
             transform.position.y,
             transform.position.z);
 
-        if (IsMoved() && !_playerComponent.IsDead && !_isDead)
+        if (transform.position.x == _destPosition.x)
+        {
+            _isMoved = true;
+        }
+
+        if (_isMoved && !_playerComponent.IsDead && !_isDead)
         {
             if (_cooldownAttackCounter > 0)
             {
@@ -56,11 +63,6 @@ public class EnemyBow : Enemy
         }
 
         DeadDestroyCounter();
-    }
-
-    private bool IsMoved()
-    {
-        return transform.position.x == _destPosition.x;
     }
 
     // 死亡処理

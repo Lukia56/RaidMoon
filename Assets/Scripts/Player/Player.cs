@@ -4,37 +4,58 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private int _direction = 1;                    // プレイヤーが向いている方向
-    [SerializeField] private bool _isDead = false;                  // 死亡したかどうか
+    [SerializeField]
+    private int _direction = 1;                 // プレイヤーが向いている方向
+    [SerializeField]
+    private bool _isDead = false;               // 死亡したかどうか
     public bool IsDead { get { return _isDead; } }
-    [SerializeField] private bool _isInvincible = false;            // 無敵かどうか
+    [SerializeField]
+    private bool _isInvincible = false;         // 無敵かどうか
 
-    [SerializeField] private float _actionCooldownCounter = 0;      // 行動クールダウンのカウンタ
+    [SerializeField]
+    private float _actionCooldownCounter = 0;   // 行動クールダウンのカウンタ
 
-    [SerializeField] private int _numArrows;                        // 矢の数
+    [SerializeField]
+    private int _numArrows;                     // 矢の数
     public int NumArrows { get { return _numArrows; }}
-    [SerializeField] private float _bowChargeCounter = 0;           // 弓のチャージカウンタ
-    [SerializeField] private bool _isBowStartCharging = false;      // 弓がチャージ中かどうか
-    [SerializeField] private bool _isBowCharged = false;            // 弓がチャージできたか
+    [SerializeField]
+    private float _bowChargeCounter = 0;        // 弓のチャージカウンタ
+    [SerializeField]
+    private bool _isBowStartCharging = false;   // 弓がチャージ中かどうか
+    [SerializeField]
+    private bool _isBowCharged = false;         // 弓がチャージできたか
 
-    [SerializeField] private float _dodgeCounter = 0;
+    [SerializeField]
+    private float _dodgeCounter = 0;            // 回避の無敵時間のカウンタ
 
-    // パラメータ
-    [SerializeField] private float _cooldownKatanaAttack;          // 刀攻撃のクールダウン時間
-    [SerializeField] private float _cooldownBowAttack;             // 弓攻撃のクールダウン時間
-    [SerializeField] private float _cooldownDodge;                 // 回避アクションのクールダウン時間
-    [SerializeField] private float _cooldownParry;                 // はじきアクションのクールダウン時間
+    [Header("パラメータ")]
 
-    [SerializeField] private float _bowChargeTime;                  // 弓のチャージ完了までの時間
-    [SerializeField] private float _dodgeDuration;                  // 回避の無敵持続時間
-    [SerializeField] private Vector3 _offsetAttackCollider;        // 刀攻撃判定のオフセット
-    [SerializeField] private Vector3 _offsetParryCollider;         // はじき判定のオフセット
+    [SerializeField]
+    private float _cooldownKatanaAttack;        // 刀攻撃のクールダウン時間
+    [SerializeField]
+    private float _cooldownBowAttack;           // 弓攻撃のクールダウン時間
+    [SerializeField]
+    private float _cooldownDodge;               // 回避アクションのクールダウン時間
+    [SerializeField]
+    private float _cooldownParry;               // はじきアクションのクールダウン時間
 
-    [SerializeField] private GameObject _prefabAttackCollider;     // 刀攻撃判定のプレハブ
-    [SerializeField] private GameObject _prefabParryCollider;      // はじき判定のプレハブ
-    [SerializeField] private GameObject _prefabArrow;               // 矢のプレハブ
-    [SerializeField] private ObjectPool _arrowObjectPool;           // 矢のオブジェクトプール
-    [SerializeField] private SpriteRenderer _renderer;
+    [SerializeField]
+    private float _bowChargeTime;               // 弓のチャージ完了までの時間
+    [SerializeField]
+    private float _dodgeDuration;               // 回避の無敵持続時間
+    [SerializeField]
+    private Vector3 _offsetAttackCollider;      // 刀攻撃判定のオフセット
+    [SerializeField]
+    private Vector3 _offsetParryCollider;       // はじき判定のオフセット
+
+    [SerializeField]
+    private GameObject _prefabAttackCollider;   // 刀攻撃判定のプレハブ
+    [SerializeField]
+    private GameObject _prefabParryCollider;    // はじき判定のプレハブ
+    [SerializeField]
+    private ObjectPool _arrowObjectPool;        // 矢のオブジェクトプール
+    [SerializeField]
+    private SpriteRenderer _renderer;           // 自身のレンダラー
 
     private void Update()
     {

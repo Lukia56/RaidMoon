@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class KillNumber : MonoBehaviour
 {
-    [SerializeField]
-    private int m_killNumbers;
-    public int KillNumbers { get { return m_killNumbers; } }
+    static public int s_killNumbers;
+    public int KillNumbers { get { return s_killNumbers; } }
 
-    public void AddNumber() { m_killNumbers++; }
+    public void AddNumber() { s_killNumbers++; }
 }
