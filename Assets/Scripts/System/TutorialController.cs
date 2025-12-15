@@ -16,6 +16,7 @@ public class TutorialController : MonoBehaviour
 
     [SerializeField]
     private int maxChoice;
+    public int MaxChoice { get { return maxChoice; } }
 
     [SerializeField]
     // タイトルテキスト
@@ -47,6 +48,11 @@ public class TutorialController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             m_choice++;
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            SceneManager.LoadScene("TitleScene");
         }
 
         m_choice = (m_choice + maxChoice) % maxChoice;
