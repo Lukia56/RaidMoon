@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     public int NumArrows { get { return _numArrows; }}
     [SerializeField]
     private float _bowChargeCounter = 0;        // 弓のチャージカウンタ
+    public float BowChargeCounter { get { return _bowChargeCounter; } }
     [SerializeField]
     private bool _isBowStartCharging = false;   // 弓がチャージ中かどうか
     [SerializeField]
@@ -41,6 +42,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private float _bowChargeTime;               // 弓のチャージ完了までの時間
+    public float BowChargeTime { get { return _bowChargeTime; } }
     [SerializeField]
     private float _dodgeDuration;               // 回避の無敵持続時間
     [SerializeField]
