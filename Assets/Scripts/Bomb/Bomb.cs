@@ -11,13 +11,15 @@ public class Bomb : Enemy
     [SerializeField] private float _parryExplosionCounter = 0;  // はじかれてから爆発するまでのカウンタ
     [SerializeField] private bool _isParried = false;           // はじかれたかどうか
 
-    [SerializeField] private float _moveTime;           // 移動時間
-    [SerializeField] private float _initForceY;         // 初速
-    [SerializeField] private float _parryForceY;        // はじかれたときの速度
-    [SerializeField] private float _parryExplosionTime; // はじかれてから爆発するまでの時間
+    [SerializeField] private float _moveTime;                   // 移動時間
+    [SerializeField] private float _initForceY;                 // 初速
+    [SerializeField] private float _parryForceY;                // はじかれたときの速度
+    [SerializeField] private float _parryExplosionTime;         // はじかれてから爆発するまでの時間
 
     [SerializeField]
     private CameraController cameraController;
+    [SerializeField]
+    private GameObject explosionPrefab;
 
     public override void Init()
     {
@@ -61,8 +63,13 @@ public class Bomb : Enemy
     {
         //Debug.Log("爆発処理が呼ばれました");
 
-        GameObject obj = Instantiate(_prefabAttackCollider, transform.position, Quaternion.identity);
+        // 爆発エフェクトを生成
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 
+        // 攻撃判定を生成
+        Instantiate(_prefabAttackCollider, transform.position, Quaternion.identity);
+
+        // カメラを揺らす
         cameraController.Shake(Vector3.one);
     }
 

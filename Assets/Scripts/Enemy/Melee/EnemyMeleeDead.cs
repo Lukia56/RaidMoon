@@ -8,18 +8,33 @@ public class EnemyMeleeDead : EnemyMeleeProcess
 
     [SerializeField] private float _destroyCounter;         // 死亡後削除するまでのカウンタ
 
+    [SerializeField]
+    private bool _isBloodCreated;
+
     // パラメータ
     [SerializeField] private float _deadAnimationTime;      // 死亡後アニメーションの時間
+
+    [SerializeField]
+    private GameObject bloodFx;
 
     // 初期化処理
     public override void Init()
     {
         _destroyCounter = 0;
+        _isBloodCreated = false;
     }
 
     // 死亡処理の更新
     public override void UpdateProcess()
     {
+        if (!_isBloodCreated)
+        {
+            GameObject blood = Instantiate(bloodFx, transform.position, Quaternion.identity);
+            blood.transform.localScale = new Vector3(-_enemy.Direction, 1, 1);
+
+            _isBloodCreated = true;
+        }
+
         DeadDestroyCounter();
     }
 
@@ -49,7 +64,7 @@ public class EnemyMeleeDead : EnemyMeleeProcess
 
             GameObject arrow = Instantiate(_enemy.Arrow, _enemy.transform.position, Quaternion.identity);
             arrow.GetComponent<DroppedArrow>().PlayerTransform = _enemy.PlayerTransform; 
-            arrow.GetComponent<DroppedArrow>().PlayerComponent = _enemy.PlayerComponent; 
+            arrow.GetComponent<DroppedArrow>().PlayerComponent = _enemy.PlayerComponent;
         }
     }
 }

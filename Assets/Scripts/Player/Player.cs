@@ -58,6 +58,8 @@ public class Player : MonoBehaviour
     private ObjectPool _arrowObjectPool;        // 矢のオブジェクトプール
     [SerializeField]
     private SpriteRenderer _renderer;           // 自身のレンダラー
+    [SerializeField]
+    private GameObject bloodFx;                 // 血しぶきのプレハブ
 
     private void Update()
     {
@@ -252,6 +254,8 @@ public class Player : MonoBehaviour
 
         Debug.Log("死亡しました");
         _isDead = true;
+
+        Instantiate(bloodFx, transform.position, Quaternion.identity);
     }
 
     // 矢の補充

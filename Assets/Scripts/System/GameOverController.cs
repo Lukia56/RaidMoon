@@ -12,7 +12,7 @@ public class GameOverController : MonoBehaviour
     {
         if (player.IsDead)
         {
-            SceneManager.LoadScene("ResultScene");
+            //SceneManager.LoadScene("ResultScene");
         }
     }
 }

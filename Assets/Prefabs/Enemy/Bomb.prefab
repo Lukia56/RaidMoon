@@ -112,6 +112,8 @@ MonoBehaviour:
   _initForceY: 10
   _parryForceY: 7
   _parryExplosionTime: 1
+  cameraController: {fileID: 0}
+  explosionPrefab: {fileID: 2429449088315280457, guid: 7f70864de453f5e478ff2bdeeef2fc4f, type: 3}
 --- !u!58 &2535814312777639711
 CircleCollider2D:
   m_ObjectHideFlags: 0

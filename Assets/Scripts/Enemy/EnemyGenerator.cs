@@ -57,9 +57,6 @@ public class EnemyGenerator : MonoBehaviour
     }
 
     // 敵を生成
-    // TODO: オブジェクトプールを使って生成するようにする
-    //      敵の種類毎にオブジェクトプールを用意し、
-    //      ランダムにその中の1つを選んで、敵を生成する
     private void GenerateEnemy()
     {
         // 敵のリストの中からランダムに1人選ぶ

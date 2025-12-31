@@ -12,10 +12,16 @@ public class EnemyMeleeFlee : EnemyMeleeProcess
     [SerializeField] private bool _isJumpFlee;          // 逃走中ジャンプをしたか
 
     // パラメータ
-    [SerializeField] private float _fleeAnimationTime;  // 逃亡後アニメーションの時間
-    [SerializeField] private float _fleeStartTime;      // 攻撃後から逃亡開始するまでの時間
-    [SerializeField] private float _fleeJumpForce;      // 逃走時のジャンプ力
-    [SerializeField] private Vector3 _gravity;          // 逃走時の重力
+    [SerializeField]
+    private float _fleeAnimationTime;  // 逃亡後アニメーションの時間
+    [SerializeField]
+    private float _fleeStartTime;      // 攻撃後から逃亡開始するまでの時間
+    [SerializeField]
+    private float _fleeJumpForce;      // 逃走時のジャンプ力
+    [SerializeField]
+    private Vector3 _gravity;          // 逃走時の重力
+    [SerializeField]
+    private SpriteRenderer myRenderer;
 
     // 初期化処理
     public override void Init()
@@ -23,6 +29,8 @@ public class EnemyMeleeFlee : EnemyMeleeProcess
         _isJumpFlee = false;
 
         _fleeCounter = 0;
+
+        myRenderer.sortingOrder = 0;
     }
 
     // 逃走処理の更新
@@ -35,6 +43,11 @@ public class EnemyMeleeFlee : EnemyMeleeProcess
 
         // 重力
         _move.Accelerate(-_gravity);
+
+        if (_move.MoveSpeed.y < 0)
+        {
+            myRenderer.sortingOrder = -3;
+        }
 
         FleeCounter();
     }
