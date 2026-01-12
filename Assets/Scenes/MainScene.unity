@@ -2985,6 +2985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f47990401ee96974a9692727bbca206e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_state: 0
   _direction: 1
   _isDead: 0
   _isInvincible: 0
@@ -2994,6 +2995,7 @@ MonoBehaviour:
   _isBowStartCharging: 0
   _isBowCharged: 0
   _dodgeCounter: 0
+  m_isAnimationUpdated: 0
   _cooldownKatanaAttack: 0.25
   _cooldownBowAttack: 1
   _cooldownDodge: 1.1
@@ -3007,6 +3009,7 @@ MonoBehaviour:
   _arrowObjectPool: {fileID: 1324257165}
   _renderer: {fileID: 1464126900}
   bloodFx: {fileID: 8572880004392964012, guid: b26b74c37dfb1124eaf7287ae6c835e0, type: 3}
+  animator: {fileID: 1464126905}
 --- !u!61 &1464126904
 BoxCollider2D:
   m_ObjectHideFlags: 0

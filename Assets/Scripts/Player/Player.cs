@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    enum State
+    {
+        Idle,
+        Attack,
+        BowReady,
+        BowFire,
+        Parry,
+        Dodge,
+        Dead
+    }
+
+    [SerializeField]
+    State m_state;
     [SerializeField]
     private int _direction = 1;                 // プレイヤーが向いている方向
     [SerializeField]
@@ -28,6 +41,9 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private float _dodgeCounter = 0;            // 回避の無敵時間のカウンタ
+
+    [SerializeField]
+    private bool m_isAnimationUpdated;          // 現在のフレームでアニメーションが更新されたかどうか
 
     [Header("パラメータ")]
 
@@ -61,8 +77,18 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject bloodFx;                 // 血しぶきのプレハブ
 
+    [SerializeField]
+    private Animator animator;
+
+    private void FixedUpdate()
+    {
+        m_isAnimationUpdated = false;
+    }
+
     private void Update()
     {
+        m_state = State.Idle;
+
         // 向いている方向を設定する
         SetDirectionInput();
 
@@ -79,6 +105,11 @@ public class Player : MonoBehaviour
         {
             // アクションの入力分岐
             ActionInput();
+        }
+
+        if (!m_isAnimationUpdated)
+        {
+            SetState(State.Idle);
         }
 
         transform.localScale = new Vector3(_direction, 1, 1);
@@ -107,6 +138,8 @@ public class Player : MonoBehaviour
             _bowChargeCounter = 0;
             _numArrows--;
 
+            SetState(State.BowFire);
+
             // 行動クールダウンを設定する
             SetActionCooldown(_cooldownBowAttack);
         }
@@ -134,6 +167,8 @@ public class Player : MonoBehaviour
 
         // 行動クールダウンを設定する
         SetActionCooldown(_cooldownKatanaAttack);
+
+        SetState(State.Attack);
     }
 
     // 弓攻撃の処理
@@ -143,6 +178,8 @@ public class Player : MonoBehaviour
 
         _isBowStartCharging = true;
         _bowChargeCounter += Time.deltaTime;
+
+        SetState(State.BowReady);
 
         if (_bowChargeCounter > _bowChargeTime)
         {
@@ -185,6 +222,8 @@ public class Player : MonoBehaviour
             _renderer.enabled = !_renderer.enabled;
 
             _dodgeCounter -= Time.deltaTime;
+
+            SetState(State.Dodge);
         }
         else
         {
@@ -203,6 +242,8 @@ public class Player : MonoBehaviour
 
         // 行動クールダウンを設定する
         SetActionCooldown(_cooldownParry);
+
+        SetState(State.Parry);
     }
 
     // 判定を生成する
@@ -256,11 +297,21 @@ public class Player : MonoBehaviour
         _isDead = true;
 
         Instantiate(bloodFx, transform.position, Quaternion.identity);
+
+        SetState(State.Dead);
     }
 
     // 矢の補充
     public void AddArrow(int add)
     {
         _numArrows += add;
+    }
+
+    // 状態を設定する
+    private void SetState(State state)
+    {
+        m_state = state;
+        animator.SetInteger("State", (int)m_state);
+        m_isAnimationUpdated = true;
     }
 }
