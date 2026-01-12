@@ -2608,7 +2608,7 @@ MonoBehaviour:
   _cooldownCounter: 0
   _objectsPool: []
   _statsList:
-  - prefab: {fileID: 6773272036671892667, guid: d1661819a61037c49a1a3c41dddb568e, type: 3}
+  - prefab: {fileID: 6773272036671892667, guid: 5cc5491a5bd361341827a2550eb4118b, type: 3}
     weight: 50
     cooldown: 3
   _generatePosition: {x: 10, y: -2.5, z: 0}
