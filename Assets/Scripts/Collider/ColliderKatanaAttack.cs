@@ -9,8 +9,13 @@ public class ColliderKatanaAttack : ColliderParent
     {
         //Debug.Log("刀攻撃処理");
 
+        EnemyMelee component = hitObject.GetComponent<EnemyMelee>();
+
+        // EnemyMeleeコンポーネントを持っていないなら処理を行わない
+        if (!component) return;
+
         // 敵が死亡したら自身を削除
-        if (hitObject.GetComponent<EnemyMelee>().Dead())
+        if (component.Dead())
         {
             Destroy(gameObject);
         }

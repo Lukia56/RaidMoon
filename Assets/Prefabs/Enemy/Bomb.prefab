@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1440972786668191453}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.44, y: -2.15, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -113,6 +113,7 @@ MonoBehaviour:
   _initForceY: 10
   _parryForceY: 7
   _parryExplosionTime: 1
+  shakePower: {x: 1, y: 1, z: 1}
   cameraController: {fileID: 0}
   explosionPrefab: {fileID: 2429449088315280457, guid: 7f70864de453f5e478ff2bdeeef2fc4f, type: 3}
 --- !u!58 &2535814312777639711

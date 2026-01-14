@@ -209,11 +209,14 @@ MonoBehaviour:
   _move: {fileID: 4690720615725177357}
   _fleeCounter: 0
   _isJumpFlee: 0
+  _isCreateParticle: 0
   _fleeAnimationTime: 2
   _fleeStartTime: 1
   _fleeJumpForce: 10
   _gravity: {x: 0, y: 20, z: 0}
+  propSortingLayer: -3
   myRenderer: {fileID: 5226895996917175994}
+  grassParticle: {fileID: 2542872815005083827, guid: 454d0cc26bc1ae34f90b8b15d433bd71, type: 3}
 --- !u!114 &-455125215336187676
 MonoBehaviour:
   m_ObjectHideFlags: 0

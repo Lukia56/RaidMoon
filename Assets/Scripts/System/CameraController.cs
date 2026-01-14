@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,9 +27,15 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        m_shake = new Vector3(Mathf.MoveTowards(m_shake.x, 0.0f, shakeDecreaseSpeed), Mathf.MoveTowards(m_shake.y, 0.0f, shakeDecreaseSpeed), 0.0f);
+        m_shake = new Vector3(
+            Mathf.MoveTowards(m_shake.x, 0.0f, shakeDecreaseSpeed * Time.deltaTime),
+            Mathf.MoveTowards(m_shake.y, 0.0f, shakeDecreaseSpeed * Time.deltaTime),
+            0.0f);
 
-        m_offsetPosition = new Vector3(Random.Range(-m_shake.x, m_shake.x), Random.Range(-m_shake.y, m_shake.y), 0.0f);
+        m_offsetPosition = new Vector3(
+            Mathf.Sin(Time.time * 1000 * Mathf.Deg2Rad) * m_shake.x,
+            Mathf.Cos(Time.time * 1000 * Mathf.Deg2Rad) * m_shake.y,
+            0.0f);
 
         transform.position = m_position + m_offsetPosition;
     }

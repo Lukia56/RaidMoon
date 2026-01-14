@@ -17,6 +17,8 @@ public class Bomb : Enemy
     [SerializeField] private float _parryExplosionTime;         // はじかれてから爆発するまでの時間
 
     [SerializeField]
+    private Vector3 shakePower;
+    [SerializeField]
     private CameraController cameraController;
     [SerializeField]
     private GameObject explosionPrefab;
@@ -63,14 +65,14 @@ public class Bomb : Enemy
     {
         //Debug.Log("爆発処理が呼ばれました");
 
+        // カメラを揺らす
+        cameraController.Shake(shakePower);
+
         // 爆発エフェクトを生成
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 
         // 攻撃判定を生成
         Instantiate(_prefabAttackCollider, transform.position, Quaternion.identity);
-
-        // カメラを揺らす
-        cameraController.Shake(Vector3.one);
     }
 
     public override void Parried()
