@@ -47,9 +47,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 340711788593b0e468af424410beac82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LifeCounter: 1
+  m_LifeCounter: 0.1
+  m_HitStopTime: 0
   m_TargetTagName: Enemy
   m_BoxCollider: {fileID: 3520687036518957398}
+  m_HitStop: {fileID: 0}
   cameraController: {fileID: 0}
   shakeAmount: {x: 0, y: 0, z: 0}
 --- !u!61 &3520687036518957398
