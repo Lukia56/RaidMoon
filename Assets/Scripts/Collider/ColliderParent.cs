@@ -62,7 +62,10 @@ public class ColliderParent : MonoBehaviour
             // ƒqƒbƒgˆ—
             HitToTarget(collision.gameObject);
 
-            cameraController.Shake(shakeAmount);
+            if (shakeAmount != Vector3.zero)
+            {
+                cameraController.Shake(shakeAmount);
+            }
         }
     }
     

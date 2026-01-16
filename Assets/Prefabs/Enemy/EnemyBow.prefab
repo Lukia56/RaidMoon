@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2957545710964717161}
   - component: {fileID: 5048714298521311471}
   - component: {fileID: 5491485918550979016}
+  - component: {fileID: 2024163982305733069}
   m_Layer: 0
   m_Name: EnemyBow
   m_TagString: Enemy
@@ -75,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: e03c111e877d98e419f5279b360009bb, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 462434960, guid: 90c7332c857b6b043bad30766e14a946, type: 3}
+  m_Color: {r: 0.3772695, g: 0.39328945, b: 0.509434, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -102,14 +103,20 @@ MonoBehaviour:
   _direction: 1
   _playerTransform: {fileID: 0}
   _playerComponent: {fileID: 0}
+  _killNumbers: {fileID: 0}
+  m_state: 0
+  m_delayAttackCounter: 0
   _cooldownAttackCounter: 0
   _isDead: 0
   _destroyCounter: 0
   _destPosition: {x: 8, y: 0, z: 0}
+  delayAttackTime: 0.7
   cooldownAttack: 3
   moveSpeed: 0.01
-  deadAnimationTime: 1
+  deadAnimationTime: 2
+  offsetArrowPos: {x: 1.5, y: 2, z: 0}
   spriteRenderer: {fileID: 2957545710964717161}
+  animator: {fileID: 2024163982305733069}
   prefabArrow: {fileID: 2377180300066008099, guid: 66ea4f0ef0953d040b882873c8fd91d4, type: 3}
 --- !u!61 &5491485918550979016
 BoxCollider2D:
@@ -146,8 +153,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.4716314, y: 0.3071662}
+    oldSize: {x: 7, y: 7}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -156,3 +163,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &2024163982305733069
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7250719069807760547}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6a915a478f8d16a4990391e68c75fbe6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

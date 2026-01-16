@@ -59,7 +59,7 @@ public class EnemyMeleeParried : EnemyMeleeProcess
 
         if (_stunCounter > _stunTimeParried)
         {
-            _enemy.State = EnemyMelee.EState.Flee;
+            _enemy.SetState(EnemyMelee.EState.Flee);
         }
     }
 }

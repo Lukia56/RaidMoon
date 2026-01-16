@@ -123,7 +123,9 @@ MonoBehaviour:
   - {fileID: 2071481222247223156}
   - {fileID: 9173847358129024813}
   - {fileID: -455125215336187676}
+  animator: {fileID: -8485847940637429558}
   _isInvincible: 0
+  m_isAnimationUpdated: 0
   _arrow: {fileID: 4806984859648525542, guid: cff0fde243d77dc40b243813289488b8, type: 3}
 --- !u!114 &-7901130199788730980
 MonoBehaviour:
@@ -170,11 +172,13 @@ MonoBehaviour:
   _enemy: {fileID: 2688076908093817612}
   _move: {fileID: 4690720615725177357}
   _isAttacked: 0
+  _delayAttackCounter: 0
   _postAttackCounter: 0
   _dashForce: {x: 12, y: 0, z: 0}
-  _attackStartRange: 1
+  _attackStartRange: 3.5
   _offsetAttackCollider: {x: 1, y: 0, z: 0}
   _prefabAttackCollider: {fileID: 2469563708137850880, guid: a9de9487f08cf7c41b7c8f54b92f3cf1, type: 3}
+  delayAttackTime: 0.5
   _postAttackTime: 1
 --- !u!114 &2071481222247223156
 MonoBehaviour:
@@ -234,6 +238,7 @@ MonoBehaviour:
   _destroyCounter: 0
   _isBloodCreated: 0
   _deadAnimationTime: 1
+  _spriteRenderer: {fileID: 5226895996917175994}
   bloodFx: {fileID: 8572880004392964012, guid: e1f79463b1c75c74f8aabda343af273a, type: 3}
 --- !u!61 &7784762673330425434
 BoxCollider2D:
@@ -267,18 +272,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5, y: 1.5}
+    pivot: {x: 0.54, y: 0.3267114}
+    oldSize: {x: 7.5, y: 7.5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.5, y: 2}
   m_EdgeRadius: 0
 --- !u!95 &-8485847940637429558
 Animator:

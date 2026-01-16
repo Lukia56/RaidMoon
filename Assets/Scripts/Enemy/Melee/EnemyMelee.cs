@@ -1,32 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 
 public class EnemyMelee : Enemy
 {
-    [SerializeField] private EState _state = EState.Run;
-    [SerializeField] private EnemyMeleeMove _move;          // 移動処理のコンポーネント
-    [SerializeField] private EnemyMeleeAttack _attack;      // 攻撃処理のコンポーネント
-    [SerializeField] private EnemyMeleeParried _parried;    // はじかれ処理のコンポーネント
-    [SerializeField] private EnemyMeleeFlee _flee;          // 逃走処理のコンポーネント
-    [SerializeField] private EnemyMeleeDead _dead;          // 死亡処理のコンポーネント
+    [SerializeField]
+    private EState _state;
+    public EState State { get { return _state; } set { if (_state != EState.Dead) _state = value;} }
+    [SerializeField]
+    private EnemyMeleeMove _move;          // 移動処理のコンポーネント
+    [SerializeField]
+    private EnemyMeleeAttack _attack;      // 攻撃処理のコンポーネント
+    [SerializeField]
+    private EnemyMeleeParried _parried;    // はじかれ処理のコンポーネント
+    [SerializeField]
+    private EnemyMeleeFlee _flee;          // 逃走処理のコンポーネント
+    [SerializeField]
+    private EnemyMeleeDead _dead;          // 死亡処理のコンポーネント
     [SerializeReference]
     private List<EnemyMeleeProcess> _processList;
+    [SerializeField]
+    private Animator animator;
 
-    [SerializeField] private bool _isInvincible;             // 無敵かどうか
+    [SerializeField] private bool _isInvincible;            // 無敵かどうか
     public bool IsInvincible { get => _isInvincible; set => _isInvincible = value; }
+    [SerializeField]
+    private bool m_isAnimationUpdated;                      // 現在のフレームでアニメーションが更新されたかどうか
     [SerializeField] GameObject _arrow;
     public GameObject Arrow { get => _arrow; }
-
-    public EState State
-    {
-        get { return _state; }
-        set
-        {
-            if (_state != EState.Dead) _state = value;
-        }
-    }
 
     public enum EState
     {
@@ -40,7 +41,7 @@ public class EnemyMelee : Enemy
 
     public override void Init()
     {
-        _state = EState.Run;
+        SetState(EState.Run);
         _isInvincible = false;
         _direction = 1;
 
@@ -56,9 +57,19 @@ public class EnemyMelee : Enemy
         }
     }
 
+    private void FixedUpdate()
+    {
+        m_isAnimationUpdated = false;
+    }
+
     private void Update()
     {
         Action();
+
+        if (!m_isAnimationUpdated)
+        {
+            //SetState(EState.Idle);
+        }
     }
 
     // 行動処理全般
@@ -67,9 +78,8 @@ public class EnemyMelee : Enemy
         // プレイヤーが死亡したら止まる
         if (_playerComponent.IsDead)
         {
-            if (_state == EState.Run
-            || _state == EState.Attack)
-                _state = EState.Idle;
+            if (_state == EState.Run)
+                SetState(EState.Idle);
         }
 
         switch (_state)
@@ -111,7 +121,7 @@ public class EnemyMelee : Enemy
     // はじかれ処理
     public override void Parried()
     {
-        State = EState.Parried;
+        SetState(EState.Parried);
     }
 
     // 2つの座標が近いかどうかを調べる
@@ -124,5 +134,12 @@ public class EnemyMelee : Enemy
         float rangeSquare = Mathf.Pow(range, 2.0f);
 
         return distanceSquare <= rangeSquare;
+    }
+
+    public void SetState(EState state)
+    {
+        _state = state;
+        animator.SetInteger("State", (int)_state);
+        m_isAnimationUpdated = true;
     }
 }

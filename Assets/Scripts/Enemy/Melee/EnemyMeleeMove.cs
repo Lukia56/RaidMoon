@@ -31,7 +31,7 @@ public class EnemyMeleeMove : EnemyMeleeProcess
 
         if (_attack.CanAttack())
         {
-            _enemy.State = EnemyMelee.EState.Attack;
+            _enemy.SetState(EnemyMelee.EState.Attack);
         }
     }
 

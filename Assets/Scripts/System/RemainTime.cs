@@ -9,10 +9,12 @@ public class RemainTime : MonoBehaviour
     [Header("メンバ変数")]
 
     [SerializeField] private float m_TimeCounter;
+    public float TimeCounter { get { return m_TimeCounter; } }
 
     [Header("パラメータ")]
 
     [SerializeField] private float limitTime;
+    public float LimitTime { get { return limitTime; } }
 
     [SerializeField] private Player player;
 

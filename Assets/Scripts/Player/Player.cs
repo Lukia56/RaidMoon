@@ -57,6 +57,9 @@ public class Player : MonoBehaviour
     private float _cooldownParry;               // はじきアクションのクールダウン時間
 
     [SerializeField]
+    private Vector3 deadCameraShake;            // 死亡時のカメラの揺れの強さ
+
+    [SerializeField]
     private float _bowChargeTime;               // 弓のチャージ完了までの時間
     public float BowChargeTime { get { return _bowChargeTime; } }
     [SerializeField]
@@ -76,6 +79,8 @@ public class Player : MonoBehaviour
     private SpriteRenderer _renderer;           // 自身のレンダラー
     [SerializeField]
     private GameObject bloodFx;                 // 血しぶきのプレハブ
+    [SerializeField]
+    private CameraController cameraController;
 
     [SerializeField]
     private Animator animator;
@@ -293,10 +298,13 @@ public class Player : MonoBehaviour
     {
         if (_isInvincible) return;
 
-        Debug.Log("死亡しました");
+        //Debug.Log("死亡しました");
+
         _isDead = true;
 
         Instantiate(bloodFx, transform.position, Quaternion.identity);
+
+        cameraController.Shake(deadCameraShake);
 
         SetState(State.Dead);
     }

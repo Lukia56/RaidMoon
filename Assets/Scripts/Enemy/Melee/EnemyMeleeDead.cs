@@ -12,14 +12,17 @@ public class EnemyMeleeDead : EnemyMeleeProcess
     private bool _isBloodCreated;
 
     // パラメータ
-    [SerializeField] private float _deadAnimationTime;      // 死亡後アニメーションの時間
-
+    [SerializeField]
+    private float _deadAnimationTime;   // 死亡後アニメーションの時間
+    [SerializeField]
+    private SpriteRenderer _spriteRenderer;
     [SerializeField]
     private GameObject bloodFx;
 
     // 初期化処理
     public override void Init()
     {
+        _spriteRenderer.enabled = true;
         _destroyCounter = 0;
         _isBloodCreated = false;
     }
@@ -35,6 +38,8 @@ public class EnemyMeleeDead : EnemyMeleeProcess
             _isBloodCreated = true;
         }
 
+        _spriteRenderer.enabled = !_spriteRenderer.enabled;
+
         DeadDestroyCounter();
     }
 
@@ -44,7 +49,7 @@ public class EnemyMeleeDead : EnemyMeleeProcess
         // 無敵ではないなら
         if (_enemy.IsInvincible) return false;
 
-        _enemy.State = EnemyMelee.EState.Dead;
+        _enemy.SetState(EnemyMelee.EState.Dead);
         _destroyCounter = _deadAnimationTime;
 
         _enemy.KillNumbers.AddNumber();

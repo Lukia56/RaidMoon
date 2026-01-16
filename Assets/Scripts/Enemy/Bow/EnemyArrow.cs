@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Timeline;
 
 public class EnemyArrow : Enemy
 {
@@ -9,8 +8,6 @@ public class EnemyArrow : Enemy
     private Vector3 _velocity = Vector3.zero;
     [SerializeField]
     private float _gravity;
-    [SerializeField]
-    private bool _isStartRotate;
     [SerializeField]
     private GameObject _collider;
 
@@ -43,10 +40,8 @@ public class EnemyArrow : Enemy
         // ˆÚ“®
         transform.position += _velocity * Time.deltaTime;
 
-        if (_isStartRotate)
-        {
-            transform.localEulerAngles -= Vector3.forward * rotate * Mathf.Sign(_velocity.x);
-        }
+        // ˆÚ“®•ûŒü‚É‰‚¶‚ÄŒü‚«‚ğ•Ï‚¦‚é
+        transform.localEulerAngles = Vector3.forward * Mathf.Atan2(_velocity.y, _velocity.x) * Mathf.Rad2Deg;
 
         // ‰æ–ÊŠO‚Éo‚½‚çíœ
         if (IsOffscreen())
@@ -67,8 +62,6 @@ public class EnemyArrow : Enemy
     {
         _velocity.x *= -1;
         _velocity.y = initForceY / 2;
-
-        _isStartRotate = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

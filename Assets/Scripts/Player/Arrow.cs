@@ -29,7 +29,7 @@ public class Arrow : PooledObject
         _speed = Vector3.zero;
     }
 
-    public void PostInit()
+    public override void PostInit()
     {
         // ‰‘¬‚ğİ’è
         _speed.x = CalculateInitSpeedX();
@@ -83,7 +83,7 @@ public class Arrow : PooledObject
 
     private bool IsStartingFall()
     {
-        return _speed.x < _startFallXSpeed;
+        return Mathf.Abs(_speed.x) < _startFallXSpeed;
     }
 
     private void EndProcess()

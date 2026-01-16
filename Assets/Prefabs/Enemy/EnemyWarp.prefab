@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: -455125215336187676}
   - component: {fileID: -5038543440323346365}
   - component: {fileID: 7784762673330425434}
+  - component: {fileID: -2684618310138154628}
   m_Layer: 0
   m_Name: EnemyWarp
   m_TagString: Enemy
@@ -82,7 +83,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 7838bb94b8cdb9e49a78624d931dde53, type: 3}
+  m_Sprite: {fileID: 4723107735738678597, guid: 1018b0ba13578bf459bd254ae1a2be99, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -124,7 +125,9 @@ MonoBehaviour:
   - {fileID: 9173847358129024813}
   - {fileID: -455125215336187676}
   - {fileID: -5038543440323346365}
+  animator: {fileID: -2684618310138154628}
   _isInvincible: 0
+  m_isAnimationUpdated: 0
   _arrow: {fileID: 4806984859648525542, guid: cff0fde243d77dc40b243813289488b8, type: 3}
 --- !u!114 &-2250610545498573836
 MonoBehaviour:
@@ -171,11 +174,13 @@ MonoBehaviour:
   _enemy: {fileID: 2688076908093817612}
   _move: {fileID: 4690720615725177357}
   _isAttacked: 0
+  _delayAttackCounter: 0
   _postAttackCounter: 0
   _dashForce: {x: 12, y: 0, z: 0}
-  _attackStartRange: 1
+  _attackStartRange: 3.5
   _offsetAttackCollider: {x: 1, y: 0, z: 0}
   _prefabAttackCollider: {fileID: 2469563708137850880, guid: a9de9487f08cf7c41b7c8f54b92f3cf1, type: 3}
+  delayAttackTime: 0.5
   _postAttackTime: 1
 --- !u!114 &2071481222247223156
 MonoBehaviour:
@@ -235,6 +240,7 @@ MonoBehaviour:
   _destroyCounter: 0
   _isBloodCreated: 0
   _deadAnimationTime: 1
+  _spriteRenderer: {fileID: 5226895996917175994}
   bloodFx: {fileID: 8572880004392964012, guid: e1f79463b1c75c74f8aabda343af273a, type: 3}
 --- !u!114 &-5038543440323346365
 MonoBehaviour:
@@ -289,8 +295,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.54, y: 0.3267114}
+    oldSize: {x: 7.5, y: 7.5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -299,3 +305,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &-2684618310138154628
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2626810271447513814}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8321d23619e235349bdca3539c7f3f18, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

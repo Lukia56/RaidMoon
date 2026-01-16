@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LifeCounter: 0.1
-  m_HitStopTime: 0
+  m_HitStopTime: 0.5
   m_TargetTagName: Enemy
   m_BoxCollider: {fileID: 3520687036518957398}
   m_HitStop: {fileID: 0}

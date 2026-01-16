@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyMeleeInvisible : EnemyMeleeProcess
@@ -79,6 +78,7 @@ public class EnemyMeleeInvisible : EnemyMeleeProcess
         if (Mathf.Abs(transform.position.x) <= Mathf.Abs(_firstPosition.x) - (afterImageDistance * _afterImageCounter))
         {
             GameObject afterImage = Instantiate(_afterImage, transform.position, Quaternion.identity);
+            afterImage.transform.localScale = transform.localScale;
             afterImage.GetComponent<SpriteRenderer>().sprite = _renderer.sprite;
 
             _afterImageCounter++;
