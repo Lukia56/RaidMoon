@@ -77,6 +77,11 @@ public class EnemyBow : Enemy
         DeadDestroyCounter();
 
         transform.localScale = new Vector3(Direction, 1, 1);
+
+        if (remainTime.TimeCounter < 5)
+        {
+            Dead();
+        }
     }
 
     // ˆÚ“®ˆ—
@@ -180,6 +185,8 @@ public class EnemyBow : Enemy
     // Ž€–Sˆ—
     public override bool Dead()
     {
+        if (_isDead) return false;
+
         _isDead = true;
         _destroyCounter = deadAnimationTime;
 

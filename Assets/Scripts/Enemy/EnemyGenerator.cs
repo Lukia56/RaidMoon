@@ -78,6 +78,7 @@ public class EnemyGenerator : MonoBehaviour
         enemyComponent.PlayerTransform = _playerTransform;
         enemyComponent.PlayerComponent = _playerComponent;
         enemyComponent.KillNumbers = _killNumber;
+        enemyComponent.PRemainTime = _remainTime;
         enemyComponent.PostInit();
 
         // クールダウンを設定

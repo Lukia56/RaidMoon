@@ -11,8 +11,14 @@ public class EnemyMeleeParried : EnemyMeleeProcess
     [SerializeField] private float _stunCounter;                // スタンのカウンタ
 
     // パラメータ
-    [SerializeField] private float _parryKnockbackForce;       // はじかれたときのノックバックの強さ
-    [SerializeField] private float _stunTimeParried;           // はじかれたときのスタンする時間
+    [SerializeField]
+    private float _parryKnockbackForce;     // はじかれたときのノックバックの強さ
+    [SerializeField]
+    private float _stunTimeParried;         // はじかれたときのスタンする時間
+    [SerializeField]
+    private Vector3 offsetImpactPos;
+    [SerializeField]
+    private GameObject impactPrefab;
 
     // 初期化処理
     public override void Init()
@@ -41,6 +47,10 @@ public class EnemyMeleeParried : EnemyMeleeProcess
         Knockback(_parryKnockbackForce);
 
         _isKnockbacked = true;
+
+        Vector3 rot = transform.localEulerAngles;
+        rot.z = 90 * -_enemy.Direction;
+        Instantiate(impactPrefab, transform.position + offsetImpactPos, Quaternion.Euler(rot));
     }
 
     // ノックバック

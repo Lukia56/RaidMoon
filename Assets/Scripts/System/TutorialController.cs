@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class TutorialController : MonoBehaviour
 {
@@ -52,7 +50,7 @@ public class TutorialController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            SceneManager.LoadScene("TitleScene");
+            Fader.FadeToScene("TitleScene");
         }
 
         m_choice = (m_choice + maxChoice) % maxChoice;

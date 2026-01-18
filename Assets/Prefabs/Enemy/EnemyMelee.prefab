@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 4723107735738678597, guid: 1018b0ba13578bf459bd254ae1a2be99, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3764706, g: 0.39215687, b: 0.50980395, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -198,6 +198,8 @@ MonoBehaviour:
   _stunCounter: 0
   _parryKnockbackForce: 7
   _stunTimeParried: 2
+  offsetImpactPos: {x: 0, y: 1, z: 0}
+  impactPrefab: {fileID: 2495527263459563271, guid: fcfb54e93bccb3d488345b127c58b1cc, type: 3}
 --- !u!114 &9173847358129024813
 MonoBehaviour:
   m_ObjectHideFlags: 0

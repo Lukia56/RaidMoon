@@ -49,6 +49,9 @@ public class EnemyMeleeDead : EnemyMeleeProcess
         // –³“G‚Å‚Í‚È‚¢‚È‚ç
         if (_enemy.IsInvincible) return false;
 
+        // ‚Ü‚¾Ž€–S‚µ‚Ä‚¢‚È‚¢‚È‚ç
+        if (_enemy.State == EnemyMelee.EState.Dead) return false;
+
         _enemy.SetState(EnemyMelee.EState.Dead);
         _destroyCounter = _deadAnimationTime;
 

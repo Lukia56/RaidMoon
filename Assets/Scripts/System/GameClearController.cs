@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class GameClearController : MonoBehaviour
 {
+    [SerializeField]
+    private bool m_isFadeStart;
+
     [Header("ƒpƒ‰ƒ[ƒ^")]
 
     [SerializeField]
@@ -10,9 +13,11 @@ public class GameClearController : MonoBehaviour
 
     private void Update()
     {
-        if (remainTime.GetRemainTime() <= 0)
+        if (remainTime.GetRemainTime() <= 0 && !m_isFadeStart)
         {
-            SceneManager.LoadScene("ResultScene");
+            Fader.FadeToScene("GameClearScene");
+
+            m_isFadeStart = true;
         }
     }
 }

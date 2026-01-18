@@ -22,6 +22,8 @@ public class Bomb : Enemy
     private CameraController cameraController;
     [SerializeField]
     private GameObject explosionPrefab;
+    [SerializeField]
+    private GameObject impactPrefab;
 
     public override void Init()
     {
@@ -80,6 +82,8 @@ public class Bomb : Enemy
         _velocity.y = _parryForceY;
         _parryExplosionCounter = _parryExplosionTime;
         _isParried = true;
+
+        Instantiate(impactPrefab, transform.position, Quaternion.identity);
     }
 
     private void ParryProcess()
@@ -99,6 +103,8 @@ public class Bomb : Enemy
         // ’n–Ê‚É‚Ô‚Â‚©‚Á‚½‚ç”š”­‚³‚¹‚é
         if (collision.gameObject.tag == "Ground")
         {
+            if (_velocity.y > 0) return;
+
             Explosion();
 
             // ©g‚ğíœ

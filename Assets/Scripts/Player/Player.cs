@@ -68,6 +68,8 @@ public class Player : MonoBehaviour
     private Vector3 _offsetAttackCollider;      // 刀攻撃判定のオフセット
     [SerializeField]
     private Vector3 _offsetParryCollider;       // はじき判定のオフセット
+    [SerializeField]
+    private Vector3 offsetArrow;
 
     [SerializeField]
     private GameObject _prefabAttackCollider;   // 刀攻撃判定のプレハブ
@@ -200,7 +202,7 @@ public class Player : MonoBehaviour
         //arrowComp.Direction = m_Direction;
         //arrowComp.ChargeRate = _bowChargeCounter / _bowChargeTime;
         GameObject arrow = _arrowObjectPool.GetInstance().gameObject;
-        arrow.transform.position = transform.position;
+        arrow.transform.position = transform.position + offsetArrow;
         Arrow arrowComp = arrow.GetComponent<Arrow>();
         arrowComp.Direction = _direction;
         arrowComp.ChargeRate = _bowChargeCounter / _bowChargeTime;

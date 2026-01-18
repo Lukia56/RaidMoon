@@ -17,6 +17,17 @@ public class Enemy : PooledObject
     [SerializeField]
     protected KillNumber _killNumbers;
     public KillNumber KillNumbers { get => _killNumbers; set => _killNumbers = value; }
+    [SerializeField]
+    protected RemainTime remainTime;
+    public RemainTime PRemainTime { get => remainTime; set => remainTime = value; }
+
+    private void Update()
+    {
+        if (remainTime.TimeCounter < 5)
+        {
+            Dead();
+        }
+    }
 
     // Ž€–Sˆ—
     public virtual bool Dead() { return false; }

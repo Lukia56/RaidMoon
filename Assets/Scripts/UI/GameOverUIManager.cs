@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ResultUIManager : MonoBehaviour
+public class GameOverUIManager : MonoBehaviour
 {
     [Header("パラメータ")]
 
@@ -45,7 +45,7 @@ public class ResultUIManager : MonoBehaviour
             titleText.color = unchoiceColor;
         }
 
-        surviveTimeText.text = RemainTime.s_surviveTime.ToString();
-        KillNumberText.text = KillNumber.s_killNumbers.ToString();
+        surviveTimeText.text = "生存時間：" + RemainTime.s_surviveTime.ToString("F2") + "秒";
+        KillNumberText.text = "倒した敵：" + KillNumber.s_killNumbers.ToString() + "体";
     }
 }

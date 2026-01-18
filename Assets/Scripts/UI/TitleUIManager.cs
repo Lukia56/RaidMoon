@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -18,8 +16,6 @@ public class TitleUIManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI startText;
     [SerializeField]
-    private TextMeshProUGUI settingsText;
-    [SerializeField]
     private TextMeshProUGUI tutorialText;
     [SerializeField]
     private TextMeshProUGUI quitText;
@@ -37,15 +33,6 @@ public class TitleUIManager : MonoBehaviour
 
         if (controller.Choice == 1)
         {
-            settingsText.color = choiceColor;
-        }
-        else
-        {
-            settingsText.color = unchoiceColor;
-        }
-
-        if (controller.Choice == 2)
-        {
             tutorialText.color = choiceColor;
         }
         else
@@ -53,7 +40,7 @@ public class TitleUIManager : MonoBehaviour
             tutorialText.color = unchoiceColor;
         }
 
-        if (controller.Choice == 3)
+        if (controller.Choice == 2)
         {
             quitText.color = choiceColor;
         }

@@ -18,6 +18,8 @@ public class ResultController : MonoBehaviour
 
     private void Update()
     {
+        if (Fader.IsFadingOut()) return;
+
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             m_choice--;
@@ -36,12 +38,12 @@ public class ResultController : MonoBehaviour
             {
                 case 0:
 
-                    SceneManager.LoadScene("MainScene");
+                    Fader.FadeToScene("MainScene");
 
                     break;
                 case 1:
 
-                    SceneManager.LoadScene("TitleScene");
+                    Fader.FadeToScene("TitleScene");
 
                     break;
             }

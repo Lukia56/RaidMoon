@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class GameOverController : MonoBehaviour
 {
+    [SerializeField]
+    private bool m_isFadeStart;
+
     [Header("ƒpƒ‰ƒ[ƒ^")]
 
     [SerializeField]
@@ -10,9 +13,11 @@ public class GameOverController : MonoBehaviour
 
     private void Update()
     {
-        if (player.IsDead)
+        if (player.IsDead && !m_isFadeStart)
         {
-            //SceneManager.LoadScene("ResultScene");
+            Fader.FadeToScene("GameOverScene", 5);
+
+            m_isFadeStart = true;
         }
     }
 }

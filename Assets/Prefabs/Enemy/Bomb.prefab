@@ -116,6 +116,7 @@ MonoBehaviour:
   shakePower: {x: 1, y: 1, z: 1}
   cameraController: {fileID: 0}
   explosionPrefab: {fileID: 2429449088315280457, guid: 7f70864de453f5e478ff2bdeeef2fc4f, type: 3}
+  impactPrefab: {fileID: 2495527263459563271, guid: fcfb54e93bccb3d488345b127c58b1cc, type: 3}
 --- !u!58 &2535814312777639711
 CircleCollider2D:
   m_ObjectHideFlags: 0

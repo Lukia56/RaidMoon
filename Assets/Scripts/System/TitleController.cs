@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class TitleController : MonoBehaviour
 {
@@ -36,19 +33,13 @@ public class TitleController : MonoBehaviour
             {
                 case 0:
 
-                    SceneManager.LoadScene("MainScene");
+                    Fader.FadeToScene("MainScene");
 
                     break;
 
                 case 1:
 
-
-
-                    break;
-
-                case 2:
-
-                    SceneManager.LoadScene("TutorialScene");
+                    Fader.FadeToScene("TutorialScene");
 
                     break;
             }
