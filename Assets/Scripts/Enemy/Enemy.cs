@@ -21,14 +21,6 @@ public class Enemy : PooledObject
     protected RemainTime remainTime;
     public RemainTime PRemainTime { get => remainTime; set => remainTime = value; }
 
-    private void Update()
-    {
-        if (remainTime.TimeCounter < 5)
-        {
-            Dead();
-        }
-    }
-
     // Ž€–Sˆ—
     public virtual bool Dead() { return false; }
 
