@@ -13,6 +13,11 @@ public class TitleController : MonoBehaviour
     [SerializeField]
     private int maxChoice;
 
+    private void Start()
+    {
+        Application.targetFrameRate = 60;
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -41,6 +46,15 @@ public class TitleController : MonoBehaviour
 
                     Fader.FadeToScene("TutorialScene");
 
+                    break;
+
+                case 2:
+
+#if UNITY_EDITOR
+                    UnityEditor.EditorApplication.isPlaying = false;
+#else
+                    Application.Quit();
+#endif
                     break;
             }
         }

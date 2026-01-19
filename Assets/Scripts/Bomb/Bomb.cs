@@ -77,13 +77,17 @@ public class Bomb : Enemy
         Instantiate(_prefabAttackCollider, transform.position, Quaternion.identity);
     }
 
-    public override void Parried()
+    public override bool Parried()
     {
+        if (_isParried) return false;
+
         _velocity.y = _parryForceY;
         _parryExplosionCounter = _parryExplosionTime;
         _isParried = true;
 
         Instantiate(impactPrefab, transform.position, Quaternion.identity);
+
+        return true;
     }
 
     private void ParryProcess()

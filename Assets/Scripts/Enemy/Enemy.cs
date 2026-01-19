@@ -25,5 +25,5 @@ public class Enemy : PooledObject
     public virtual bool Dead() { return false; }
 
     // ‚Í‚¶‚©‚êˆ—
-    public virtual void Parried() { }
+    public virtual bool Parried() { return false; }
 }

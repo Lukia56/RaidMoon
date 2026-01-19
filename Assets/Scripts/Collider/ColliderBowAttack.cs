@@ -59,7 +59,7 @@ public class ColliderBowAttack : MonoBehaviour
         if (_isDead) return;
 
         // チャージ済みなら
-        if (!_isCharged) return;
+        //if (!_isCharged) return;
 
         // 敵が死亡したら自身を削除
         if (hitObject.GetComponent<Enemy>().Dead())

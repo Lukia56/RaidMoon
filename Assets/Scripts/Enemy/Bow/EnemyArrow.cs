@@ -58,10 +58,12 @@ public class EnemyArrow : Enemy
 
     private bool IsOffscreen() { return transform.position.y < -7; }
 
-    public override void Parried()
+    public override bool Parried()
     {
         _velocity.x *= -1;
         _velocity.y = initForceY / 2;
+
+        return true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

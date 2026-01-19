@@ -119,9 +119,13 @@ public class EnemyMelee : Enemy
     }
 
     // ‚Í‚¶‚©‚êˆ—
-    public override void Parried()
+    public override bool Parried()
     {
+        if (_state == EState.Dead) return false;
+
         SetState(EState.Parried);
+
+        return true;
     }
 
     // 2‚Â‚ÌÀ•W‚ª‹ß‚¢‚©‚Ç‚¤‚©‚ğ’²‚×‚é

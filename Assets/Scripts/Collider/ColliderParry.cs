@@ -8,7 +8,10 @@ public class ColliderParry : ColliderParent
     protected override void HitToTarget(GameObject hitObject)
     {
         //Debug.Log("‚Í‚¶‚«ˆ—");
-        hitObject.GetComponent<Enemy>().Parried();
+
+        Enemy enemy = hitObject.GetComponent<Enemy>();
+
+        if (!enemy.Parried()) return;
 
         Destroy(gameObject);
     }
