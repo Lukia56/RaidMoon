@@ -16,6 +16,13 @@ public class ResultController : MonoBehaviour
     [SerializeField]
     private int maxChoice;
 
+    [SerializeField]
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip seMenu;
+    [SerializeField]
+    private AudioClip seConfirm;
+
     private void Update()
     {
         if (Fader.IsFadingOut()) return;
@@ -23,17 +30,23 @@ public class ResultController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             m_choice--;
+
+            audioSource.PlayOneShot(seMenu);
         }
         else
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             m_choice++;
+
+            audioSource.PlayOneShot(seMenu);
         }
 
         m_choice = (m_choice + maxChoice) % maxChoice;
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
+            audioSource.PlayOneShot(seConfirm);
+
             switch (m_choice)
             {
                 case 0:

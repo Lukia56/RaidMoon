@@ -25,6 +25,11 @@ public class Bomb : Enemy
     [SerializeField]
     private GameObject impactPrefab;
 
+    [SerializeField]
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip seExplosion;
+
     public override void Init()
     {
         _velocity = Vector3.zero;
@@ -45,6 +50,8 @@ public class Bomb : Enemy
     private void Start()
     {
         cameraController = GameObject.FindWithTag("MainCamera").GetComponent<CameraController>();
+
+        audioSource = transform.parent.GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -75,6 +82,9 @@ public class Bomb : Enemy
 
         // UŒ‚”»’è‚ğ¶¬
         Instantiate(_prefabAttackCollider, transform.position, Quaternion.identity);
+
+        // Œø‰Ê‰¹‚ğÄ¶
+        audioSource.PlayOneShot(seExplosion);
     }
 
     public override bool Parried()

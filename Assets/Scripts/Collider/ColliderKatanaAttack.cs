@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class ColliderKatanaAttack : ColliderParent
 {
+    private AudioSource audioSource;
+    // UŒ‚‚ÌSE
+    [SerializeField]
+    private AudioClip seAttack;
+
+    private void Awake()
+    {
+        audioSource = transform.parent.GetComponent<AudioSource>();
+    }
+
     // ƒqƒbƒgˆ—
     protected override void HitToTarget(GameObject hitObject)
     {
@@ -17,6 +27,8 @@ public class ColliderKatanaAttack : ColliderParent
         // “G‚ª€–S‚µ‚½‚ç©g‚ğíœ
         if (component.Dead())
         {
+            audioSource.PlayOneShot(seAttack);
+
             Destroy(gameObject);
         }
     }

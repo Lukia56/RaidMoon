@@ -7,6 +7,10 @@ public class TimeCycle : MonoBehaviour
 
     [SerializeField]
     private float dawnStartTime;
+    [SerializeField]
+    private Color nightColor;
+    [SerializeField]
+    private Color dawnColor;
 
     [SerializeField]
     private RemainTime remainTime;
@@ -14,6 +18,13 @@ public class TimeCycle : MonoBehaviour
     private SpriteRenderer nightBG;
     [SerializeField]
     private SpriteRenderer dawnBG;
+    [SerializeField]
+    private Material material;
+
+    private void Start()
+    {
+        material.color = nightColor;
+    }
 
     private void Update()
     {
@@ -22,9 +33,11 @@ public class TimeCycle : MonoBehaviour
             float currentCount = remainTime.LimitTime - remainTime.TimeCounter;
 
             float count = currentCount - (remainTime.LimitTime - dawnStartTime);
-            float alpha = count / dawnStartTime;
-            alpha = Mathf.Pow(10 * (alpha - 1), 2.0f) / 100.0f; // ExpoIn
-            nightBG.color = new Color(1, 1, 1, alpha);
+            float dawnRate = count / dawnStartTime;
+            nightBG.color = new Color(1, 1, 1, 1 - dawnRate);
+
+            Color color = Color.Lerp(nightColor, dawnColor, dawnRate);
+            material.color = color;
         }
     }
 }

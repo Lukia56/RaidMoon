@@ -51,6 +51,8 @@ MonoBehaviour:
   m_TargetTagName: Enemy
   _isCharged: 0
   _isDead: 0
+  audioSource: {fileID: 0}
+  seHit: {fileID: 8300000, guid: 4dfb315303fa49c4d90916438af76a7a, type: 3}
 --- !u!61 &3520687036518957398
 BoxCollider2D:
   m_ObjectHideFlags: 0

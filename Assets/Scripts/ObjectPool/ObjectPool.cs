@@ -26,7 +26,7 @@ public class ObjectPool : MonoBehaviour
         // ê∂ê¨
         for (int i = 0; i < m_InitPoolSize; i++)
         {
-            PooledObject instance = Instantiate(m_ObjectToPool);
+            PooledObject instance = Instantiate(m_ObjectToPool, transform);
             instance.Pool = this;
             instance.gameObject.SetActive(false);
 

@@ -31,6 +31,9 @@ public class EnemyMeleeFlee : EnemyMeleeProcess
     [SerializeField]
     private GameObject grassParticle;   // 飛び散る草のプレハブ
 
+    [SerializeField]
+    private AudioClip seJump;
+
     // 初期化処理
     public override void Init()
     {
@@ -80,6 +83,8 @@ public class EnemyMeleeFlee : EnemyMeleeProcess
         _move.ForceMove(new Vector3(0, _fleeJumpForce, 0));
 
         _isJumpFlee = true;
+
+        _enemy.MyAudioSource.PlayOneShot(seJump);
     }
 
     // 逃走カウンタの処理

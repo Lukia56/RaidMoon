@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0fa48300455c0864ca8d0854efe76f23, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -104,6 +104,7 @@ MonoBehaviour:
   _playerTransform: {fileID: 0}
   _playerComponent: {fileID: 0}
   _killNumbers: {fileID: 0}
+  remainTime: {fileID: 0}
   _prefabAttackCollider: {fileID: 2469563708137850880, guid: 1d55fa3633486864ba85a45a6dbfbead, type: 3}
   _velocity: {x: 0, y: 0, z: 0}
   _gravity: 0
@@ -117,6 +118,8 @@ MonoBehaviour:
   cameraController: {fileID: 0}
   explosionPrefab: {fileID: 2429449088315280457, guid: 7f70864de453f5e478ff2bdeeef2fc4f, type: 3}
   impactPrefab: {fileID: 2495527263459563271, guid: fcfb54e93bccb3d488345b127c58b1cc, type: 3}
+  audioSource: {fileID: 0}
+  seExplosion: {fileID: 8300000, guid: c1f9bb1a76692514abee0ffb1bc0535d, type: 3}
 --- !u!58 &2535814312777639711
 CircleCollider2D:
   m_ObjectHideFlags: 0

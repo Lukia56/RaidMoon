@@ -62,7 +62,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0fa48300455c0864ca8d0854efe76f23, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 4723107735738678597, guid: 1018b0ba13578bf459bd254ae1a2be99, type: 3}
-  m_Color: {r: 0.83387554, g: 0.43805626, b: 0.8679245, a: 1}
+  m_Color: {r: 0.9876633, g: 0.6933962, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -111,6 +111,7 @@ MonoBehaviour:
   _playerTransform: {fileID: 0}
   _playerComponent: {fileID: 0}
   _killNumbers: {fileID: 0}
+  remainTime: {fileID: 0}
   _state: 0
   _move: {fileID: 4690720615725177357}
   _attack: {fileID: 7372196505281271224}
@@ -126,6 +127,7 @@ MonoBehaviour:
   - {fileID: -455125215336187676}
   - {fileID: -5038543440323346365}
   animator: {fileID: -2684618310138154628}
+  audioSource: {fileID: 0}
   _isInvincible: 0
   m_isAnimationUpdated: 0
   _arrow: {fileID: 4806984859648525542, guid: cff0fde243d77dc40b243813289488b8, type: 3}
@@ -182,6 +184,8 @@ MonoBehaviour:
   _prefabAttackCollider: {fileID: 2469563708137850880, guid: a9de9487f08cf7c41b7c8f54b92f3cf1, type: 3}
   delayAttackTime: 0.5
   _postAttackTime: 1
+  seAttack: {fileID: 8300000, guid: be71c1d0dcc7ed843bf97ca6687a7e20, type: 3}
+  seWind: {fileID: 8300000, guid: fefc468a99cf56e40b5392df1aa9d7cf, type: 3}
 --- !u!114 &2071481222247223156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,6 +230,7 @@ MonoBehaviour:
   propSortingLayer: -3
   myRenderer: {fileID: 5226895996917175994}
   grassParticle: {fileID: 2542872815005083827, guid: 454d0cc26bc1ae34f90b8b15d433bd71, type: 3}
+  seJump: {fileID: 8300000, guid: 5bf84889423a11149b69039e940828f8, type: 3}
 --- !u!114 &-455125215336187676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,6 +249,7 @@ MonoBehaviour:
   _deadAnimationTime: 1
   _spriteRenderer: {fileID: 5226895996917175994}
   bloodFx: {fileID: 8572880004392964012, guid: e1f79463b1c75c74f8aabda343af273a, type: 3}
+  seDefeated: {fileID: 8300000, guid: 0c6147b5f518a3a42848ef235f23dff0, type: 3}
 --- !u!114 &-5038543440323346365
 MonoBehaviour:
   m_ObjectHideFlags: 0

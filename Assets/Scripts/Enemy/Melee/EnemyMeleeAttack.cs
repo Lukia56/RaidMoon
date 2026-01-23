@@ -30,6 +30,11 @@ public class EnemyMeleeAttack : EnemyMeleeProcess
     [SerializeField]
     private float _postAttackTime;              // UŒ‚‚©‚ç“¦‘–‚·‚é‚Ü‚Å‚ÌŠÔ
 
+    [SerializeField]
+    private AudioClip seAttack;
+    [SerializeField]
+    private AudioClip seWind;
+
     // ‰Šú‰»ˆ—
     public override void Init()
     {
@@ -61,6 +66,9 @@ public class EnemyMeleeAttack : EnemyMeleeProcess
 
         // ƒ_ƒbƒVƒ…
         _move.ForceMove(_dashForce);
+
+        _enemy.MyAudioSource.PlayOneShot(seAttack);
+        _enemy.MyAudioSource.PlayOneShot(seWind);
 
         _isAttacked = true;
     }

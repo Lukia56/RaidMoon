@@ -54,6 +54,7 @@ MonoBehaviour:
   m_HitStop: {fileID: 0}
   cameraController: {fileID: 0}
   shakeAmount: {x: 0, y: 0, z: 0}
+  seParry: {fileID: 8300000, guid: 5f2252f096a3a48499002bc4450c03bd, type: 3}
 --- !u!61 &3520687036518957398
 BoxCollider2D:
   m_ObjectHideFlags: 0

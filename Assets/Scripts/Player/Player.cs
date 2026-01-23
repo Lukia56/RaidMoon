@@ -85,6 +85,33 @@ public class Player : MonoBehaviour
     private CameraController cameraController;
 
     [SerializeField]
+    private AudioSource audioSource;
+    // 風切り音
+    [SerializeField]
+    private AudioClip seStrikeout;
+    // 回避SE
+    [SerializeField]
+    private AudioClip seDodge;
+    // 弓を引き絞るSE
+    [SerializeField]
+    private AudioClip seDrawBow;
+    // 弓をチャージするSE
+    [SerializeField]
+    private AudioClip seChargeBow;
+    // 弓のチャージ完了SE
+    [SerializeField]
+    private AudioClip seDoneCharge;
+    // 弓の発射SE
+    [SerializeField]
+    private AudioClip seFireBow;
+    // チャージした弓の発射SE
+    [SerializeField]
+    private AudioClip seFireChargedBow;
+    // 倒れたときのSE
+    [SerializeField]
+    private AudioClip seDefeated;
+
+    [SerializeField]
     private Animator animator;
 
     private void FixedUpdate()
@@ -132,14 +159,23 @@ public class Player : MonoBehaviour
         }
 
         // 弓攻撃の処理
+        if (Input.GetKeyDown(KeyCode.LeftShift) && _numArrows > 0)
+        {
+            audioSource.PlayOneShot(seDrawBow);
+            audioSource.PlayOneShot(seChargeBow);
+        }
         if (Input.GetKey(KeyCode.LeftShift) && _numArrows > 0)
         {
             BowAttack();
         }
-        if (_isBowStartCharging && (Input.GetKeyUp(KeyCode.LeftShift) || _isBowCharged))
+        if (_isBowStartCharging && Input.GetKeyUp(KeyCode.LeftShift))
         {
             CreateArrow();
 
+            audioSource.PlayOneShot(seFireBow);
+            if (_isBowCharged)
+                audioSource.PlayOneShot(seFireChargedBow);
+            
             _isBowStartCharging = false;
             _isBowCharged = false;
             _bowChargeCounter = 0;
@@ -175,6 +211,9 @@ public class Player : MonoBehaviour
         // 行動クールダウンを設定する
         SetActionCooldown(_cooldownKatanaAttack);
 
+        // 風切り音を再生
+        audioSource.PlayOneShot(seStrikeout);
+
         SetState(State.Attack);
     }
 
@@ -188,9 +227,11 @@ public class Player : MonoBehaviour
 
         SetState(State.BowReady);
 
-        if (_bowChargeCounter > _bowChargeTime)
+        if (_bowChargeCounter > _bowChargeTime && !_isBowCharged)
         {
             _isBowCharged = true;
+
+            audioSource.PlayOneShot(seDoneCharge);
         }
     }
 
@@ -215,6 +256,8 @@ public class Player : MonoBehaviour
         //Debug.Log("回避の処理が呼ばれました");
 
         _dodgeCounter = _dodgeDuration;
+
+        audioSource.PlayOneShot(seDodge);
 
         // 行動クールダウンを設定する
         SetActionCooldown(_cooldownDodge);
@@ -250,6 +293,8 @@ public class Player : MonoBehaviour
         // 行動クールダウンを設定する
         SetActionCooldown(_cooldownParry);
 
+        audioSource.PlayOneShot(seStrikeout);
+
         SetState(State.Parry);
     }
 
@@ -262,7 +307,7 @@ public class Player : MonoBehaviour
         // 判定の座標を設定
         Vector3 pos = transform.position + offset;
         // 生成
-        Instantiate(_prefab, pos, Quaternion.identity);
+        Instantiate(_prefab, pos, Quaternion.identity, transform);
     }
     
     // アクションができるかどうか
@@ -307,6 +352,8 @@ public class Player : MonoBehaviour
         Instantiate(bloodFx, transform.position, Quaternion.identity);
 
         cameraController.Shake(deadCameraShake);
+
+        audioSource.PlayOneShot(seDefeated);
 
         SetState(State.Dead);
     }

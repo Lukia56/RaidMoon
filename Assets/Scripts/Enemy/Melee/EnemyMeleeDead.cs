@@ -19,6 +19,13 @@ public class EnemyMeleeDead : EnemyMeleeProcess
     [SerializeField]
     private GameObject bloodFx;
 
+    [SerializeField]
+    private AudioClip seDefeated;
+
+    private void Start()
+    {
+    }
+
     // ‰Šú‰»ˆ—
     public override void Init()
     {
@@ -56,6 +63,8 @@ public class EnemyMeleeDead : EnemyMeleeProcess
         _destroyCounter = _deadAnimationTime;
 
         _enemy.KillNumbers.AddNumber();
+
+        _enemy.MyAudioSource.PlayOneShot(seDefeated);
 
         return true;
     }

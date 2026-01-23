@@ -14,6 +14,16 @@ public class ColliderBowAttack : MonoBehaviour
     [SerializeField] bool _isDead;
     public bool IsDead { get => _isDead; set => _isDead = value; }
 
+    [SerializeField]
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip seHit;
+
+    private void Start()
+    {
+        audioSource = transform.parent.parent.GetComponent<AudioSource>();
+    }
+
     private void Update()
     {
         // ê∂ë∂èàóù
@@ -65,6 +75,8 @@ public class ColliderBowAttack : MonoBehaviour
         if (hitObject.GetComponent<Enemy>().Dead())
         {
             _isDead = true;
+
+            audioSource.PlayOneShot(seHit);
         }
     }
 }

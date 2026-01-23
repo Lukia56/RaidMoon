@@ -4,59 +4,75 @@ public class TitleController : MonoBehaviour
 {
     [Header("メンバ変数")]
 
-    [SerializeField]
-    private int m_choice;
-    public int Choice { get { return m_choice; } }
+	[SerializeField]
+	private int m_choice;
+	public int Choice { get { return m_choice; } }
 
-    [Header("パラメータ")]
+	[Header("パラメータ")]
 
-    [SerializeField]
-    private int maxChoice;
+	[SerializeField]
+	private int maxChoice;
 
-    private void Start()
-    {
-        Application.targetFrameRate = 60;
-    }
+	[SerializeField]
+	private AudioSource audioSource;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            m_choice--;
-        }
-        else
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            m_choice++;
-        }
+	// メニュー選択のSE
+	[SerializeField]
+	private AudioClip seMenu;
+	// 決定のSE
+	[SerializeField]
+	private AudioClip seConfirm;
 
-        m_choice = (m_choice + maxChoice) % maxChoice;
+	private void Start()
+	{
+		Application.targetFrameRate = 60;
+	}
 
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            switch (m_choice)
-            {
-                case 0:
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.UpArrow))
+		{
+			m_choice--;
 
-                    Fader.FadeToScene("MainScene");
+			audioSource.PlayOneShot(seMenu);
+		}
+		else
+		if (Input.GetKeyDown(KeyCode.DownArrow))
+		{
+			m_choice++;
 
-                    break;
+			audioSource.PlayOneShot(seMenu);
+		}
 
-                case 1:
+		m_choice = (m_choice + maxChoice) % maxChoice;
 
-                    Fader.FadeToScene("TutorialScene");
+		if (Input.GetKeyDown(KeyCode.Z))
+		{
+			audioSource.PlayOneShot(seConfirm);
+			
+			switch (m_choice)
+			{
+				case 0:
 
-                    break;
+					Fader.FadeToScene("MainScene");
 
-                case 2:
+					break;
+
+				case 1:
+
+					Fader.FadeToScene("TutorialScene");
+
+					break;
+
+				case 2:
 
 #if UNITY_EDITOR
-                    UnityEditor.EditorApplication.isPlaying = false;
+					UnityEditor.EditorApplication.isPlaying = false;
 #else
-                    Application.Quit();
+					Application.Quit();
 #endif
-                    break;
-            }
-        }
-    }
+					break;
+			}
+		}
+	}
 }

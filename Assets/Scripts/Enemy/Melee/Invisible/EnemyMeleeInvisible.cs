@@ -25,7 +25,10 @@ public class EnemyMeleeInvisible : EnemyMeleeProcess
     {
         _isSetFirstPosition = false;
         _afterImageCounter = 0;
-        _color = _renderer.color;
+
+        Color color = _renderer.color;
+        color.a = 1;
+        _color = color;
     }
 
     public override void UpdateProcess()
@@ -56,7 +59,13 @@ public class EnemyMeleeInvisible : EnemyMeleeProcess
         else
         {
             bool isRunning = _enemy.State == EnemyMelee.EState.Run;
-            if (isRunning) _renderer.color = Color.clear;
+
+            if (isRunning)
+            {
+                Color color = _renderer.color;
+                color.a = 0;
+                _renderer.color = color;
+            }
         }
     }
 

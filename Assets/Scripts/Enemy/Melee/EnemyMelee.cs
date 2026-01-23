@@ -21,6 +21,9 @@ public class EnemyMelee : Enemy
     private List<EnemyMeleeProcess> _processList;
     [SerializeField]
     private Animator animator;
+    [SerializeField]
+    private AudioSource audioSource;
+    public AudioSource MyAudioSource { get { return audioSource; } }
 
     [SerializeField] private bool _isInvincible;            // –³“G‚©‚Ç‚¤‚©
     public bool IsInvincible { get => _isInvincible; set => _isInvincible = value; }
@@ -37,6 +40,11 @@ public class EnemyMelee : Enemy
         Parried,
         Flee,
         Dead
+    }
+
+    private void Start()
+    {
+        audioSource = transform.parent.GetComponent<AudioSource>();
     }
 
     public override void Init()
