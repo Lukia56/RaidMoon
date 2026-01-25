@@ -21,6 +21,9 @@ public class EnemyMeleeInvisible : EnemyMeleeProcess
     [SerializeField] float _afterImageDuration;
     [SerializeField] float _afterImageAmount;
 
+    [SerializeField]
+    private AudioClip seHeartBeat;
+
     public override void Init()
     {
         _isSetFirstPosition = false;
@@ -83,6 +86,8 @@ public class EnemyMeleeInvisible : EnemyMeleeProcess
             afterImage.GetComponent<SpriteRenderer>().color = _color;
 
             _afterImageCounter++;
+
+            _enemy.MyAudioSource.PlayOneShot(seHeartBeat);
         }
     }
 }

@@ -271,7 +271,8 @@ MonoBehaviour:
   _afterImageCounter: 0
   _showStartRange: 3
   _afterImageDuration: 0.75
-  _afterImageAmount: 5
+  _afterImageAmount: 3
+  seHeartBeat: {fileID: 8300000, guid: 4960fa8cc03ec1a46a52955dd13fb0df, type: 3}
 --- !u!61 &7784762673330425434
 BoxCollider2D:
   m_ObjectHideFlags: 0
