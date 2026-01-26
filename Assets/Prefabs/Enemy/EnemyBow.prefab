@@ -119,6 +119,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 2957545710964717161}
   animator: {fileID: 2024163982305733069}
   prefabArrow: {fileID: 2377180300066008099, guid: 66ea4f0ef0953d040b882873c8fd91d4, type: 3}
+  audioSource: {fileID: 0}
+  seDefeated: {fileID: 8300000, guid: 0c6147b5f518a3a42848ef235f23dff0, type: 3}
 --- !u!61 &5491485918550979016
 BoxCollider2D:
   m_ObjectHideFlags: 0

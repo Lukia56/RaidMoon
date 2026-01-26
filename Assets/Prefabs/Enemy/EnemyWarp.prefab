@@ -159,8 +159,11 @@ MonoBehaviour:
   _attack: {fileID: 7372196505281271224}
   _moveSpeed: {x: 0, y: 0, z: 0}
   _canMove: 1
+  _footstepsCounter: 0
   _maxRunSpeed: {x: 5, y: 0, z: 0}
   _decel: 25
+  footstepsDuration: 0.35
+  seFootsteps: {fileID: 8300000, guid: 8396c67cbfe296242ae352c47ada9ae6, type: 3}
 --- !u!114 &7372196505281271224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,6 +234,7 @@ MonoBehaviour:
   myRenderer: {fileID: 5226895996917175994}
   grassParticle: {fileID: 2542872815005083827, guid: 454d0cc26bc1ae34f90b8b15d433bd71, type: 3}
   seJump: {fileID: 8300000, guid: 5bf84889423a11149b69039e940828f8, type: 3}
+  seEnterBush: {fileID: 8300000, guid: bd245f186da38f447a71c1a1abc680ca, type: 3}
 --- !u!114 &-455125215336187676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,6 +272,8 @@ MonoBehaviour:
   afterImagePrefab: {fileID: 7597410106151106038, guid: 1f3d40d3e647dea4b8eeb20c9153b750, type: 3}
   afterImageColor: {r: 0.66138995, g: 0.084104665, b: 0.8490566, a: 1}
   myRenderer: {fileID: 5226895996917175994}
+  seWarpLow: {fileID: 8300000, guid: c91fcf414acc0344cb03b13996f1bf3b, type: 3}
+  seWarpHigh: {fileID: 8300000, guid: 1d74880bed4586644a16a79a2d9dc8af, type: 3}
 --- !u!61 &7784762673330425434
 BoxCollider2D:
   m_ObjectHideFlags: 0

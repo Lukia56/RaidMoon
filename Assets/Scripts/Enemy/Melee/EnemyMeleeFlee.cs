@@ -33,6 +33,8 @@ public class EnemyMeleeFlee : EnemyMeleeProcess
 
     [SerializeField]
     private AudioClip seJump;
+    [SerializeField]
+    private AudioClip seEnterBush;
 
     // ‰Šú‰»ˆ—
     public override void Init()
@@ -67,6 +69,8 @@ public class EnemyMeleeFlee : EnemyMeleeProcess
         if (CanCreateParticle())
         {
             Instantiate(grassParticle, transform.position, Quaternion.identity);
+
+            _enemy.MyAudioSource.PlayOneShot(seEnterBush);
 
             _isCreateParticle = true;
         }

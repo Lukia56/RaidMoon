@@ -12,14 +12,24 @@ public class EnemyMeleeMove : EnemyMeleeProcess
     [SerializeField] private bool _canMove;                                     // 動けるかどうか
     public bool CanMove { get => _canMove; set => _canMove = value; }
 
+    [SerializeField]
+    private float _footstepsCounter;
+
     // パラメータ
     [SerializeField] private Vector3 _maxRunSpeed;  // 最大走行速度
     [SerializeField] private float _decel;          // 減速度
+
+    [SerializeField]
+    private float footstepsDuration;
+
+    [SerializeField]
+    private AudioClip seFootsteps;
 
     // 初期化処理
     public override void Init()
     {
         _canMove = true;
+        _footstepsCounter = 0;
 
         _moveSpeed = Vector3.zero;
     }
@@ -55,6 +65,17 @@ public class EnemyMeleeMove : EnemyMeleeProcess
         if (!_canMove) return;
 
         _moveSpeed = _maxRunSpeed * _enemy.Direction;
+
+        if (_footstepsCounter > 0)
+        {
+            _footstepsCounter -= Time.deltaTime;
+        }
+        else
+        {
+            _enemy.MyAudioSource.PlayOneShot(seFootsteps);
+
+            _footstepsCounter = footstepsDuration;
+        }
     }
 
     // 強制移動

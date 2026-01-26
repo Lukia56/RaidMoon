@@ -44,6 +44,16 @@ public class EnemyBow : Enemy
     [SerializeField]
     private GameObject prefabArrow;
 
+    [SerializeField]
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip seDefeated;
+
+    private void Start()
+    {
+        audioSource = transform.parent.GetComponent<AudioSource>();
+    }
+
     public override void Init()
     {
         SetState(State.Idle);
@@ -191,6 +201,8 @@ public class EnemyBow : Enemy
         _destroyCounter = deadAnimationTime;
 
         KillNumbers.AddNumber();
+
+        audioSource.PlayOneShot(seDefeated);
 
         SetState(State.Dead);
 

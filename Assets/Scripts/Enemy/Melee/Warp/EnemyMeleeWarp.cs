@@ -18,6 +18,11 @@ public class EnemyMeleeWarp : EnemyMeleeProcess
     [SerializeField]
     private SpriteRenderer myRenderer;
 
+    [SerializeField]
+    private AudioClip seWarpLow;
+    [SerializeField]
+    private AudioClip seWarpHigh;
+
     public override void Init()
     {
         _isWarped = false;
@@ -44,6 +49,9 @@ public class EnemyMeleeWarp : EnemyMeleeProcess
        
         // 向きを反転させる
         _enemy.Direction *= -1;
+
+        _enemy.MyAudioSource.PlayOneShot(seWarpLow);
+        _enemy.MyAudioSource.PlayOneShot(seWarpHigh);
 
         _isWarped = true;
     }
