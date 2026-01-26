@@ -43,7 +43,7 @@ public class ObjectPool : MonoBehaviour
         if (m_Stack.Count == 0)
         {
             // êVÇµÇ≠ê∂ê¨
-            instance = Instantiate(m_ObjectToPool);
+            instance = Instantiate(m_ObjectToPool, transform);
             instance.Pool = this;
         }
         else

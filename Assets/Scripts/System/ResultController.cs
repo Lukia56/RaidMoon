@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class ResultController : MonoBehaviour
@@ -10,6 +11,10 @@ public class ResultController : MonoBehaviour
     [SerializeField]
     private int m_choice;
     public int Choice { get { return m_choice; } }
+
+    private InputAction _upAction;
+    private InputAction _downAction;
+    private InputAction _submitAction;
 
     [Header("ÉpÉâÉÅÅ[É^")]
 
@@ -23,18 +28,25 @@ public class ResultController : MonoBehaviour
     [SerializeField]
     private AudioClip seConfirm;
 
+    private void Start()
+    {
+        _upAction = InputSystem.actions.FindAction("UIUp");
+        _downAction = InputSystem.actions.FindAction("UIDown");
+        _submitAction = InputSystem.actions.FindAction("Submit");
+    }
+
     private void Update()
     {
         if (Fader.IsFadingOut()) return;
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (_upAction.WasPressedThisFrame())
         {
             m_choice--;
 
             audioSource.PlayOneShot(seMenu);
         }
         else
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (_downAction.WasPressedThisFrame())
         {
             m_choice++;
 
@@ -43,7 +55,7 @@ public class ResultController : MonoBehaviour
 
         m_choice = (m_choice + maxChoice) % maxChoice;
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (_submitAction.WasPressedThisFrame())
         {
             audioSource.PlayOneShot(seConfirm);
 

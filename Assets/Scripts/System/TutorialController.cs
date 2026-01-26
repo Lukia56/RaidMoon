@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TutorialController : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class TutorialController : MonoBehaviour
     [SerializeField]
     private int m_choice;
     public int Choice { get { return m_choice; } }
+
+    private InputAction _leftAction;
+    private InputAction _rightAction;
+    private InputAction _cancelAction;
 
     [Header("ÉpÉâÉÅÅ[É^")]
 
@@ -36,19 +41,26 @@ public class TutorialController : MonoBehaviour
     [SerializeField]
     private SpriteRenderer descImage;
 
+    private void Start()
+    {
+        _leftAction = InputSystem.actions.FindAction("UILeft");
+        _rightAction = InputSystem.actions.FindAction("UIRight");
+        _cancelAction = InputSystem.actions.FindAction("Cancel");
+    }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (_leftAction.WasPressedThisFrame())
         {
             m_choice--;
         }
         else
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (_rightAction.WasPressedThisFrame())
         {
             m_choice++;
         }
 
-        if (Input.GetKeyDown(KeyCode.X))
+        if (_cancelAction.WasPressedThisFrame())
         {
             Fader.FadeToScene("TitleScene");
         }

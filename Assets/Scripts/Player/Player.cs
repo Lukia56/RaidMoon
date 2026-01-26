@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -44,6 +45,12 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private bool m_isAnimationUpdated;          // 現在のフレームでアニメーションが更新されたかどうか
+
+    private InputAction _moveAction;
+    private InputAction _katanaAction;
+    private InputAction _bowAction;
+    private InputAction _dodgeAction;
+    private InputAction _parryAction;
 
     [Header("パラメータ")]
 
@@ -114,6 +121,15 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Animator animator;
 
+    private void Start()
+    {
+        _moveAction = InputSystem.actions.FindAction("Move");
+        _katanaAction = InputSystem.actions.FindAction("KatanaAttack");
+        _bowAction = InputSystem.actions.FindAction("BowAttack");
+        _dodgeAction = InputSystem.actions.FindAction("Dodge");
+        _parryAction = InputSystem.actions.FindAction("Parry");
+    }
+
     private void FixedUpdate()
     {
         m_isAnimationUpdated = false;
@@ -153,22 +169,22 @@ public class Player : MonoBehaviour
     private void ActionInput()
     {
         // 刀攻撃の処理
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (_katanaAction.WasPressedThisFrame())
         {
             KatanaAttack();
         }
 
         // 弓攻撃の処理
-        if (Input.GetKeyDown(KeyCode.LeftShift) && _numArrows > 0)
+        if (_bowAction.WasPressedThisFrame() && _numArrows > 0)
         {
             audioSource.PlayOneShot(seDrawBow);
             audioSource.PlayOneShot(seChargeBow);
         }
-        if (Input.GetKey(KeyCode.LeftShift) && _numArrows > 0)
+        if (_bowAction.IsPressed() && _numArrows > 0)
         {
             BowAttack();
         }
-        if (_isBowStartCharging && Input.GetKeyUp(KeyCode.LeftShift))
+        if (_isBowStartCharging && _bowAction.WasReleasedThisFrame())
         {
             CreateArrow();
 
@@ -188,13 +204,13 @@ public class Player : MonoBehaviour
         }
 
         // 回避アクションの処理
-        if (Input.GetKeyDown(KeyCode.X))
+        if (_dodgeAction.WasPressedThisFrame())
         {
             Dodge();
         }
 
         // はじきアクションの処理
-        if (Input.GetKeyDown(KeyCode.C))
+        if (_parryAction.WasPressedThisFrame())
         {
             Parry();
         }
@@ -327,8 +343,12 @@ public class Player : MonoBehaviour
     {
         if (_isDead) return;
 
-        if (Input.GetKeyDown(KeyCode.RightArrow)) _direction = 1;
-        if (Input.GetKeyDown(KeyCode.LeftArrow)) _direction = -1;
+        var moveValue = _moveAction.ReadValue<Vector2>();
+
+        if (moveValue.x == 0.0f) return;
+
+        Debug.Log(moveValue);
+        _direction = Mathf.CeilToInt(Mathf.Abs(moveValue.x)) * (int)Mathf.Sign(moveValue.x);
     }
 
     // 行動クールダウンを設定する
