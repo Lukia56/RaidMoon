@@ -3185,7 +3185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TimeCounter: 0
-  limitTime: 180
+  limitTime: 160
   player: {fileID: 1464126902}
 --- !u!114 &1243143525
 MonoBehaviour:
@@ -3687,6 +3687,10 @@ MonoBehaviour:
   _isDead: 0
   _isInvincible: 0
   _actionCooldownCounter: 0
+  _delayKatanaAttackCounter: 0
+  _delayParryCounter: 0
+  _isAttacked: 0
+  _isParried: 0
   _numArrows: 3
   _bowChargeCounter: 0
   _isBowStartCharging: 0
@@ -3697,6 +3701,8 @@ MonoBehaviour:
   _cooldownBowAttack: 0.3
   _cooldownDodge: 0.55
   _cooldownParry: 0.2
+  delayKatanaAttack: 0.2
+  delayParry: 0.1
   deadCameraShake: {x: 0.5, y: 0.5, z: 0}
   _bowChargeTime: 1
   _dodgeDuration: 0.55
@@ -4147,6 +4153,7 @@ GameObject:
   - component: {fileID: 1991757340}
   - component: {fileID: 1991757341}
   - component: {fileID: 1991757339}
+  - component: {fileID: 1991757342}
   m_Layer: 0
   m_Name: BGMPlayer
   m_TagString: Untagged
@@ -4280,6 +4287,19 @@ MonoBehaviour:
   fadeOutSpeed: 0.5
   audioSource: {fileID: 1991757339}
   player: {fileID: 1464126902}
+--- !u!114 &1991757342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991757338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 096fe9819f8ca09448606f3b1ffe0265, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 1991757339}
 --- !u!1 &2074067883
 GameObject:
   m_ObjectHideFlags: 0

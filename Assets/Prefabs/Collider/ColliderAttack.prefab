@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9d725649cbc0394aa72c55f5aba2503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LifeCounter: 1
+  m_LifeCounter: 0.2
   m_HitStopTime: 0.1
   m_TargetTagName: Enemy
   m_BoxCollider: {fileID: 3520687036518957398}

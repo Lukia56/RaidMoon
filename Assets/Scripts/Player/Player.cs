@@ -30,6 +30,16 @@ public class Player : MonoBehaviour
     private float _actionCooldownCounter = 0;   // 行動クールダウンのカウンタ
 
     [SerializeField]
+    private float _delayKatanaAttackCounter;    // 刀攻撃の攻撃判定が出るまでの遅延時間のカウンタ
+    [SerializeField]
+    private float _delayParryCounter;           // はじきのはじき判定が出るまでの遅延時間のカウンタ
+
+    [SerializeField]
+    private bool _isAttacked;
+    [SerializeField]
+    private bool _isParried;
+
+    [SerializeField]
     private int _numArrows;                     // 矢の数
     public int NumArrows { get { return _numArrows; }}
     [SerializeField]
@@ -62,6 +72,11 @@ public class Player : MonoBehaviour
     private float _cooldownDodge;               // 回避アクションのクールダウン時間
     [SerializeField]
     private float _cooldownParry;               // はじきアクションのクールダウン時間
+
+    [SerializeField]
+    private float delayKatanaAttack;            // 刀攻撃の攻撃判定が出るまでの遅延時間
+    [SerializeField]
+    private float delayParry;                   // はじきのはじき判定が出るまでの遅延時間
 
     [SerializeField]
     private Vector3 deadCameraShake;            // 死亡時のカメラの揺れの強さ
@@ -128,6 +143,8 @@ public class Player : MonoBehaviour
         _bowAction = InputSystem.actions.FindAction("BowAttack");
         _dodgeAction = InputSystem.actions.FindAction("Dodge");
         _parryAction = InputSystem.actions.FindAction("Parry");
+
+        Application.targetFrameRate = 60;
     }
 
     private void FixedUpdate()
@@ -155,6 +172,30 @@ public class Player : MonoBehaviour
         {
             // アクションの入力分岐
             ActionInput();
+        }
+
+        if (_delayKatanaAttackCounter > 0)
+        {
+            _delayKatanaAttackCounter -= Time.deltaTime;
+        }
+        if (_delayKatanaAttackCounter <= 0 && _isAttacked)
+        {
+            // 攻撃判定を生成する
+            CreateCollider(_prefabAttackCollider, _offsetAttackCollider);
+
+            _isAttacked = false;
+        }
+
+        if (_delayParryCounter > 0)
+        {
+            _delayParryCounter -= Time.deltaTime;
+        }
+        if (_delayParryCounter <= 0 && _isParried)
+        {
+            // はじき判定を生成する
+            CreateCollider(_prefabParryCollider, _offsetParryCollider);
+
+            _isParried = false;
         }
 
         if (!m_isAnimationUpdated)
@@ -221,8 +262,8 @@ public class Player : MonoBehaviour
     {
         //Debug.Log("刀の攻撃処理が呼ばれました");
 
-        // 攻撃判定を生成する
-        CreateCollider(_prefabAttackCollider, _offsetAttackCollider);
+        _delayKatanaAttackCounter = delayKatanaAttack;
+        _isAttacked = true;
 
         // 行動クールダウンを設定する
         SetActionCooldown(_cooldownKatanaAttack);
@@ -303,8 +344,8 @@ public class Player : MonoBehaviour
     {
         //Debug.Log("はじきアクションが呼ばれた");
 
-        // はじき判定を生成する
-        CreateCollider(_prefabParryCollider, _offsetParryCollider);
+        _delayParryCounter = delayParry;
+        _isParried = true;
 
         // 行動クールダウンを設定する
         SetActionCooldown(_cooldownParry);

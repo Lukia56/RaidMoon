@@ -190,5 +190,23 @@ public class Fader : MonoBehaviour
         s_instance.StartFadeOut(sceneName, duration);
     }
 
-    public static bool IsFadingOut() { return s_instance.m_state == FadeState.Out; }
+    public static bool IsFadingOut()
+    {
+        if (s_instance == null)
+        {
+            return false;
+        }
+
+        return s_instance.m_state == FadeState.Out;
+    }
+
+    public static float GetAlpha()
+    {
+        if (s_instance == null)
+        {
+            return 0.0f;
+        }
+
+        return s_instance.m_image.color.a;
+    }
 }
