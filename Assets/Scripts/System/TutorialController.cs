@@ -41,6 +41,13 @@ public class TutorialController : MonoBehaviour
     [SerializeField]
     private SpriteRenderer descImage;
 
+    [SerializeField]
+    private AudioSource audioSource;
+
+    // ÉÅÉjÉÖÅ[ëIëÇÃSE
+    [SerializeField]
+    private AudioClip seMenu;
+
     private void Start()
     {
         _leftAction = InputSystem.actions.FindAction("UILeft");
@@ -53,11 +60,15 @@ public class TutorialController : MonoBehaviour
         if (_leftAction.WasPressedThisFrame())
         {
             m_choice--;
+
+            audioSource.PlayOneShot(seMenu);
         }
         else
         if (_rightAction.WasPressedThisFrame())
         {
             m_choice++;
+
+            audioSource.PlayOneShot(seMenu);
         }
 
         if (_cancelAction.WasPressedThisFrame())
