@@ -719,6 +719,7 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
+  - component: {fileID: 519420035}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -769,7 +770,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 5.4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -860,6 +861,30 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &519420035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88f5cead0c0b2a4eb05b5900433f8d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ComponentVersion: 1
+  m_AssetsPPU: 100
+  m_RefResolutionX: 1920
+  m_RefResolutionY: 1080
+  m_CropFrame: 0
+  m_GridSnapping: 0
+  m_FilterMode: 0
+  m_UpscaleRT: 0
+  m_PixelSnapping: 0
+  m_CropFrameX: 0
+  m_CropFrameY: 0
+  m_StretchFill: 0
 --- !u!1 &679962882
 GameObject:
   m_ObjectHideFlags: 0
@@ -2884,7 +2909,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -228, y: -37.7}
+  m_AnchoredPosition: {x: -228, y: -37.69995}
   m_SizeDelta: {x: 64, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1090197806
@@ -3701,7 +3726,7 @@ MonoBehaviour:
   _cooldownBowAttack: 0.3
   _cooldownDodge: 0.55
   _cooldownParry: 0.2
-  delayKatanaAttack: 0.2
+  delayKatanaAttack: 0.1
   delayParry: 0.1
   deadCameraShake: {x: 0.5, y: 0.5, z: 0}
   _bowChargeTime: 1
@@ -3714,6 +3739,7 @@ MonoBehaviour:
   _arrowObjectPool: {fileID: 1324257165}
   _renderer: {fileID: 1464126900}
   bloodFx: {fileID: 8572880004392964012, guid: b26b74c37dfb1124eaf7287ae6c835e0, type: 3}
+  fadeFx: {fileID: 8318973293559336851, guid: 0d88c852c0c722e45856d662de5b439d, type: 3}
   cameraController: {fileID: 519420033}
   audioSource: {fileID: 1464126906}
   seStrikeout: {fileID: 8300000, guid: 0f004babcde6504448ab934181b978eb, type: 3}
@@ -4299,6 +4325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 096fe9819f8ca09448606f3b1ffe0265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myVolume: 1
   audioSource: {fileID: 1991757339}
 --- !u!1 &2074067883
 GameObject:

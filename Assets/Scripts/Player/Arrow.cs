@@ -20,6 +20,7 @@ public class Arrow : PooledObject
     [SerializeField] private float _decel;              // 減速度
     [SerializeField] private float _gravity;            // 重力度
     [SerializeField] private float _minPowerRate;       // 最小の初速の割合
+    [SerializeField] private float powerRateCharged;    // チャージが完了したときの係数
     [SerializeField] private float _startFallXSpeed;    // 落下し始めるX速度
 
     [SerializeField] private GameObject _prefabColliderAttack;
@@ -31,6 +32,8 @@ public class Arrow : PooledObject
 
     public override void PostInit()
     {
+        _chargeRate = Mathf.Clamp01(_chargeRate);
+
         // 初速を設定
         _speed.x = CalculateInitSpeedX();
 
@@ -77,6 +80,8 @@ public class Arrow : PooledObject
     private float CalculateInitSpeedX()
     {
         float rate = Mathf.Max(_chargeRate, _minPowerRate);
+
+        if (_chargeRate >= 1.0f) rate *= powerRateCharged;
 
         return _power * rate * _direction;
     }

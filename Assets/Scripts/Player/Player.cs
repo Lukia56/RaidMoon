@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour
     public bool IsDead { get { return _isDead; } }
     [SerializeField]
     private bool _isInvincible = false;         // 無敵かどうか
+    public bool IsInvincible { get { return _isInvincible; } }
 
     [SerializeField]
     private float _actionCooldownCounter = 0;   // 行動クールダウンのカウンタ
@@ -104,6 +106,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject bloodFx;                 // 血しぶきのプレハブ
     [SerializeField]
+    private GameObject fadeFx;                  // フェードエフェクトのプレハブ
+    [SerializeField]
     private CameraController cameraController;
 
     [SerializeField]
@@ -154,7 +158,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        m_state = State.Idle;
+        //SetState(State.Idle);
 
         // 向いている方向を設定する
         SetDirectionInput();
@@ -193,7 +197,8 @@ public class Player : MonoBehaviour
         if (_delayParryCounter <= 0 && _isParried)
         {
             // はじき判定を生成する
-            CreateCollider(_prefabParryCollider, _offsetParryCollider);
+            var coll = CreateCollider(_prefabParryCollider, _offsetParryCollider);
+            coll.GetComponent<ColliderParry>().Direction = _direction;
 
             _isParried = false;
         }
@@ -289,6 +294,10 @@ public class Player : MonoBehaviour
             _isBowCharged = true;
 
             audioSource.PlayOneShot(seDoneCharge);
+
+            var fx = Instantiate(fadeFx, transform.position, Quaternion.identity);
+            fx.transform.localScale = transform.localScale;
+            fx.GetComponent<SpriteRenderer>().sprite = _renderer.sprite;
         }
     }
 
@@ -356,7 +365,7 @@ public class Player : MonoBehaviour
     }
 
     // 判定を生成する
-    private void CreateCollider(GameObject _prefab, Vector3 _offset)
+    private GameObject CreateCollider(GameObject _prefab, Vector3 _offset)
     {
         // オフセットの方向を指定する
         Vector3 offset = _offset;
@@ -364,7 +373,7 @@ public class Player : MonoBehaviour
         // 判定の座標を設定
         Vector3 pos = transform.position + offset;
         // 生成
-        Instantiate(_prefab, pos, Quaternion.identity, transform);
+        return Instantiate(_prefab, pos, Quaternion.identity, transform);
     }
     
     // アクションができるかどうか
@@ -404,8 +413,6 @@ public class Player : MonoBehaviour
     // 死亡処理
     public void Dead()
     {
-        if (_isInvincible) return;
-
         //Debug.Log("死亡しました");
 
         _isDead = true;
@@ -428,6 +435,9 @@ public class Player : MonoBehaviour
     // 状態を設定する
     private void SetState(State state)
     {
+        // 死亡していたら状態を変更しない
+        if (m_state == State.Dead) return;
+
         m_state = state;
         animator.SetInteger("State", (int)m_state);
         m_isAnimationUpdated = true;
