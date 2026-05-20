@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
     private bool _isAttacked;
     [SerializeField]
     private bool _isParried;
-
+    
     [SerializeField]
     private int _numArrows;                     // –î‚Ì”
     public int NumArrows { get { return _numArrows; }}
@@ -263,7 +263,7 @@ public class Player : MonoBehaviour
     }
     
     // “UŒ‚‚Ìˆ—
-    private void KatanaAttack()
+    public void KatanaAttack()
     {
         //Debug.Log("“‚ÌUŒ‚ˆ—‚ªŒÄ‚Î‚ê‚Ü‚µ‚½");
 

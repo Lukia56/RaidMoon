@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class TutorialController : MonoBehaviour
 {
@@ -39,8 +40,8 @@ public class TutorialController : MonoBehaviour
     private TextMeshProUGUI description;
 
     [SerializeField]
-    private SpriteRenderer descImage;
-
+    private Image descImage;
+    
     [SerializeField]
     private AudioSource audioSource;
 
@@ -59,28 +60,43 @@ public class TutorialController : MonoBehaviour
     {
         if (_leftAction.WasPressedThisFrame())
         {
-            m_choice--;
-
-            audioSource.PlayOneShot(seMenu);
+            BackPage();
         }
         else
         if (_rightAction.WasPressedThisFrame())
         {
-            m_choice++;
-
-            audioSource.PlayOneShot(seMenu);
+            NextPage();
         }
 
         if (_cancelAction.WasPressedThisFrame())
         {
-            Fader.FadeToScene("TitleScene");
+            BackToTitle();
         }
-
-        m_choice = (m_choice + maxChoice) % maxChoice;
 
         title.text = titleText[m_choice];
         description.text = descriptionText[m_choice];
 
         descImage.sprite = descSprites[m_choice];
+    }
+
+    public void BackPage()
+    {
+        m_choice--;
+        m_choice = (m_choice + maxChoice) % maxChoice;
+
+        audioSource.PlayOneShot(seMenu);
+    }
+
+    public void NextPage()
+    {
+        m_choice++;
+        m_choice = (m_choice + maxChoice) % maxChoice;
+
+        audioSource.PlayOneShot(seMenu);
+    }
+
+    public void BackToTitle()
+    {
+        Fader.FadeToScene("TitleScene");
     }
 }

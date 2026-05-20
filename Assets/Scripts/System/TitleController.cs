@@ -58,31 +58,35 @@ public class TitleController : MonoBehaviour
 
 		if (_submitAction.WasPressedThisFrame())
 		{
-			audioSource.PlayOneShot(seConfirm);
-			
-			switch (m_choice)
-			{
-				case 0:
-
-					Fader.FadeToScene("MainScene");
-
-					break;
-
-				case 1:
-
-					Fader.FadeToScene("TutorialScene");
-
-					break;
-
-				case 2:
-
-#if UNITY_EDITOR
-					UnityEditor.EditorApplication.isPlaying = false;
-#else
-					Application.Quit();
-#endif
-					break;
-			}
+			OnChoice(m_choice);
 		}
 	}
+
+	public void OnChoice(int choice)
+	{
+        audioSource.PlayOneShot(seConfirm);
+
+        switch (choice)
+        {
+            case 0:
+
+                Fader.FadeToScene("MainScene");
+
+                break;
+
+            case 1:
+
+                Fader.FadeToScene("TutorialScene");
+
+                break;
+
+            case 2:
+#if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+#else
+				Application.Quit();
+#endif
+                break;
+        }
+    }
 }
