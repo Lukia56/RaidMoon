@@ -143,8 +143,6 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private FloatingJoystick joystick;
-    [SerializeField]
-    private Button buttonBow;
 
     private void Start()
     {
@@ -240,16 +238,14 @@ public class Player : MonoBehaviour
             BowAttack();
         }
 
-        float joystickDir = Mathf.Atan2(joystick.Vertical, joystick.Horizontal) * Mathf.Rad2Deg;
-
         // 回避アクションの処理
-        if (_dodgeAction.WasPressedThisFrame() || (joystickDir > -135 && joystickDir < -45))
+        if (_dodgeAction.WasPressedThisFrame())
         {
             Dodge();
         }
 
         // はじきアクションの処理
-        if (_parryAction.WasPressedThisFrame() || (joystickDir < 135 && joystickDir > 45))
+        if (_parryAction.WasPressedThisFrame())
         {
             Parry();
         }
@@ -340,10 +336,8 @@ public class Player : MonoBehaviour
     }
 
     // 回避アクションの処理
-    private void Dodge()
+    public void Dodge()
     {
-        //Debug.Log("回避の処理が呼ばれました");
-
         _dodgeCounter = _dodgeDuration;
 
         audioSource.PlayOneShot(seDodge);
@@ -372,10 +366,8 @@ public class Player : MonoBehaviour
     }
 
     // はじきアクションの処理
-    private void Parry()
+    public void Parry()
     {
-        //Debug.Log("はじきアクションが呼ばれた");
-
         _delayParryCounter = delayParry;
         _isParried = true;
 

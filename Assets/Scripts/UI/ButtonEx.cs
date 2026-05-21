@@ -1,8 +1,11 @@
 using UnityEditor;
-//using UnityEditor.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+
+#if UNITY_EDITOR
+using UnityEditor.UI;
+#endif
 
 public class ButtonEx : Button
 {
