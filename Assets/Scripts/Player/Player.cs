@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -140,6 +141,11 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Animator animator;
 
+    [SerializeField]
+    private FloatingJoystick joystick;
+    [SerializeField]
+    private Button buttonBow;
+
     private void Start()
     {
         _moveAction = InputSystem.actions.FindAction("Move");
@@ -147,7 +153,7 @@ public class Player : MonoBehaviour
         _bowAction = InputSystem.actions.FindAction("BowAttack");
         _dodgeAction = InputSystem.actions.FindAction("Dodge");
         _parryAction = InputSystem.actions.FindAction("Parry");
-
+        
         Application.targetFrameRate = 60;
     }
 
@@ -221,42 +227,29 @@ public class Player : MonoBehaviour
         }
 
         // 弓攻撃の処理
-        if (_bowAction.WasPressedThisFrame() && _numArrows > 0)
+        if (_bowAction.WasPressedThisFrame())
         {
-            audioSource.PlayOneShot(seDrawBow);
-            audioSource.PlayOneShot(seChargeBow);
+            BowStart();
         }
-        if (_bowAction.IsPressed() && _numArrows > 0)
+        if (_bowAction.IsPressed())
+        {
+            BowCharge();
+        }
+        if (_bowAction.WasReleasedThisFrame())
         {
             BowAttack();
         }
-        if (_isBowStartCharging && _bowAction.WasReleasedThisFrame())
-        {
-            CreateArrow();
 
-            audioSource.PlayOneShot(seFireBow);
-            if (_isBowCharged)
-                audioSource.PlayOneShot(seFireChargedBow);
-            
-            _isBowStartCharging = false;
-            _isBowCharged = false;
-            _bowChargeCounter = 0;
-            _numArrows--;
-
-            SetState(State.BowFire);
-
-            // 行動クールダウンを設定する
-            SetActionCooldown(_cooldownBowAttack);
-        }
+        float joystickDir = Mathf.Atan2(joystick.Vertical, joystick.Horizontal) * Mathf.Rad2Deg;
 
         // 回避アクションの処理
-        if (_dodgeAction.WasPressedThisFrame())
+        if (_dodgeAction.WasPressedThisFrame() || (joystickDir > -135 && joystickDir < -45))
         {
             Dodge();
         }
 
         // はじきアクションの処理
-        if (_parryAction.WasPressedThisFrame())
+        if (_parryAction.WasPressedThisFrame() || (joystickDir < 135 && joystickDir > 45))
         {
             Parry();
         }
@@ -279,10 +272,19 @@ public class Player : MonoBehaviour
         SetState(State.Attack);
     }
 
-    // 弓攻撃の処理
-    private void BowAttack()
+    // 弓の開始処理
+    public void BowStart()
     {
-        //Debug.Log("弓のチャージ開始");
+        if (_numArrows <= 0) return;
+
+        audioSource.PlayOneShot(seDrawBow);
+        audioSource.PlayOneShot(seChargeBow);
+    }
+
+    // 弓のチャージ処理
+    public void BowCharge()
+    {
+        if (_numArrows <= 0) return;
 
         _isBowStartCharging = true;
         _bowChargeCounter += Time.deltaTime;
@@ -299,6 +301,27 @@ public class Player : MonoBehaviour
             fx.transform.localScale = transform.localScale;
             fx.GetComponent<SpriteRenderer>().sprite = _renderer.sprite;
         }
+    }
+
+    // 弓の攻撃処理
+    public void BowAttack()
+    {
+        if (!_isBowStartCharging) return;
+
+        CreateArrow();
+
+        audioSource.PlayOneShot(seFireBow);
+        if (_isBowCharged) audioSource.PlayOneShot(seFireChargedBow);
+
+        _isBowStartCharging = false;
+        _isBowCharged = false;
+        _bowChargeCounter = 0;
+        _numArrows--;
+
+        SetState(State.BowFire);
+
+        // 行動クールダウンを設定する
+        SetActionCooldown(_cooldownBowAttack);
     }
 
     // 矢の作成
@@ -393,11 +416,10 @@ public class Player : MonoBehaviour
     {
         if (_isDead) return;
 
-        var moveValue = _moveAction.ReadValue<Vector2>();
+        Vector2 moveValue = _moveAction.ReadValue<Vector2>() + joystick.Direction;
 
         if (moveValue.x == 0.0f) return;
 
-        Debug.Log(moveValue);
         _direction = Mathf.CeilToInt(Mathf.Abs(moveValue.x)) * (int)Mathf.Sign(moveValue.x);
     }
 
@@ -413,8 +435,6 @@ public class Player : MonoBehaviour
     // 死亡処理
     public void Dead()
     {
-        //Debug.Log("死亡しました");
-
         _isDead = true;
 
         Instantiate(bloodFx, transform.position, Quaternion.identity);

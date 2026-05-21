@@ -57,21 +57,26 @@ public class ResultController : MonoBehaviour
 
         if (_submitAction.WasPressedThisFrame())
         {
-            audioSource.PlayOneShot(seConfirm);
+            OnChoice(m_choice);
+        }
+    }
 
-            switch (m_choice)
-            {
-                case 0:
+    public void OnChoice(int choice)
+    {
+        audioSource.PlayOneShot(seConfirm);
 
-                    Fader.FadeToScene("MainScene");
+        switch (choice)
+        {
+            case 0:
 
-                    break;
-                case 1:
+                Fader.FadeToScene("MainScene");
 
-                    Fader.FadeToScene("TitleScene");
+                break;
+            case 1:
 
-                    break;
-            }
+                Fader.FadeToScene("TitleScene");
+
+                break;
         }
     }
 }
