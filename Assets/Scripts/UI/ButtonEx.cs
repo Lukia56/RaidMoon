@@ -9,8 +9,9 @@ using UnityEditor.UI;
 
 public class ButtonEx : Button
 {
-    public UnityEvent onPressEvents;
+    public UnityEvent onDownEvents;
     public UnityEvent onUpEvents;
+    public UnityEvent onPressEvents;
 
     private bool isPressed;
     private bool isExit;
@@ -37,6 +38,8 @@ public class ButtonEx : Button
     {
         base.OnPointerDown(eventData);
         isPressed = true;
+        isExit = false;
+        onDownEvents.Invoke();
     }
 
     public override void OnPointerExit(PointerEventData eventData)
@@ -56,6 +59,7 @@ public class ButtonEx : Button
 
             serializedObject.Update();
 
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("onDownEvents"), true);
             EditorGUILayout.PropertyField(serializedObject.FindProperty("onUpEvents"), true);
             EditorGUILayout.PropertyField(serializedObject.FindProperty("onPressEvents"), true);
 
